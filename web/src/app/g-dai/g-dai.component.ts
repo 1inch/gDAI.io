@@ -10,7 +10,8 @@ import {TokenService} from '../token.service';
 export class GDaiComponent implements OnInit {
 
     loading = true;
-    walletBalance;
+    walletBalance = '0';
+    earnedInterest = '0';
 
     constructor(
         protected gDaiService: GDAIService,
@@ -20,11 +21,22 @@ export class GDaiComponent implements OnInit {
 
     ngOnInit() {
 
-        
+        this.setWalletBalance();
+
+        setInterval(() => {
+
+            this.setWalletBalance();
+            this.setEarnedInterest();
+        }, 12000);
     }
 
     async setWalletBalance() {
 
         this.walletBalance = this.tokenService.formatAsset('DAI', await this.gDaiService.getWalletBalance());
+    }
+
+    async setEarnedInterest() {
+
+        this.earnedInterest = this.tokenService.formatAsset('DAI', await this.gDaiService.getEarnedInterest());
     }
 }

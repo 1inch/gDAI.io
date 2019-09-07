@@ -405,4 +405,24 @@ export class Web3Service {
             throw new Error(e);
         }
     }
+
+    async waitForWalletAddress() {
+
+        return new Promise((resolve, reject) => {
+
+            const checkForWalletAddress = () => {
+
+                if (this.walletAddress) {
+
+                    resolve();
+                } else {
+
+                    setTimeout(checkForWalletAddress, 100);
+                }
+            };
+
+            checkForWalletAddress();
+            setTimeout(reject, 12000);
+        });
+    }
 }

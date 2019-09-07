@@ -4,7 +4,7 @@ import {ethers} from 'ethers';
 import {BigNumber} from 'ethers/utils';
 
 declare let require: any;
-const ERC20ABI = require('./abi/ERC20ABI.json');
+const ERC20ABI = require('./abi/ERC20.json');
 
 @Injectable({
     providedIn: 'root'

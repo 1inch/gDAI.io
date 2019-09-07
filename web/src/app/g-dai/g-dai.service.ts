@@ -745,8 +745,35 @@ export class GDAIService {
 
     async getWalletBalance() {
 
-        return ethers.utils.bigNumberify(await this.contract.methods.balanceOf(
-            this.web3Service.walletAddress
-        ).call());
+        try {
+
+            await this.web3Service.waitForWalletAddress();
+
+            return ethers.utils.bigNumberify(await this.contract.methods.balanceOf(
+                this.web3Service.walletAddress
+            ).call());
+        } catch (e) {
+
+            // console.error(e);
+        }
+
+        return ethers.utils.bigNumberify(0);
+    }
+
+    async getEarnedInterest() {
+
+        try {
+
+            await this.web3Service.waitForWalletAddress();
+
+            return ethers.utils.bigNumberify(await this.contract.methods.earnedInterest(
+                this.web3Service.walletAddress
+            ).call());
+        } catch (e) {
+
+            // console.error(e);
+        }
+
+        return ethers.utils.bigNumberify(0);
     }
 }
