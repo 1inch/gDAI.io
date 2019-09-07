@@ -4,7 +4,7 @@ import {ethers} from 'ethers';
 import {BigNumber} from 'ethers/utils';
 
 declare let require: any;
-const ERC20ABI = require('./abi/ERC20.json');
+const ERC20ABI = require('./abi/ERC20ABI.json');
 
 @Injectable({
     providedIn: 'root'
@@ -1269,7 +1269,7 @@ export class TokenService {
         },
         cWBTC: {
             symbol: 'cWBTC',
-            name: 'Compound Wrapped BTC',
+            name: 'Compound Wrapped BTC (cBTC)',
             icon: '',
             decimals: 8,
             address: '0xc11b1268c1a384e55c48c2391d8d480264a3a7f4'
@@ -1351,6 +1351,55 @@ export class TokenService {
             decimals: 18,
             address: '0x14094949152eddbfcd073717200da82fed8dc960'
         },
+        iUSDC: {
+            symbol: 'iUSDC',
+            name: 'bZx USDC iToken (iUSDC)',
+            icon: '',
+            decimals: 6,
+            address: '0xF013406A0B1d544238083DF0B93ad0d2cBE0f65f'
+        },
+        iETH: {
+            symbol: 'iETH',
+            name: 'bZx ETH iToken (iETH)',
+            icon: '',
+            decimals: 18,
+            address: '0x77f973FCaF871459aa58cd81881Ce453759281bC'
+        },
+        iWBTC: {
+            symbol: 'iWBTC',
+            name: 'bZx WBTC iToken (iWBTC)',
+            icon: '',
+            decimals: 8,
+            address: '0xBA9262578EFef8b3aFf7F60Cd629d6CC8859C8b5'
+        },
+        iLINK: {
+            symbol: 'iLINK',
+            name: 'bZx LINK iToken (iLINK)',
+            icon: '',
+            decimals: 18,
+            address: '0x1D496da96caf6b518b133736beca85D5C4F9cBc5'
+        },
+        iZRX: {
+            symbol: 'iZRX',
+            name: 'bZx ZRX iToken (iZRX)',
+            icon: '',
+            decimals: 18,
+            address: '0xA7Eb2bc82df18013ecC2A6C533fc29446442EDEe'
+        },
+        iREP: {
+            symbol: 'iREP',
+            name: 'bZx REP iToken (iREP)',
+            icon: '',
+            decimals: 18,
+            address: '0xBd56E9477Fc6997609Cf45F84795eFbDAC642Ff1'
+        },
+        iKNC: {
+            symbol: 'iKNC',
+            name: 'bZx KNC iToken (iKNC)',
+            icon: '',
+            decimals: 18,
+            address: '0x1cC9567EA2eB740824a45F8026cCF8e46973234D'
+        },
         USDT: {
             symbol: 'USDT',
             name: 'Tether USD (USDT)',
@@ -1365,6 +1414,21 @@ export class TokenService {
             decimals: 18,
             address: '0x99ea4db9ee77acd40b119bd1dc4e33e1c070b80d'
         }
+        // ,
+        // SNX: {
+        //     symbol: 'SNX',
+        //     name: 'Synthetix Network Token (SNX)',
+        //     icon: '',
+        //     decimals: 18,
+        //     address: '0xc011a72400e58ecd99ee497cf89e3775d4bd732f'
+        // }
+    };
+
+    private re = {
+        18: new RegExp('^-?\\d+(?:\.\\d{0,18})?'),
+        8: new RegExp('^-?\\d+(?:\.\\d{0,8})?'),
+        6: new RegExp('^-?\\d+(?:\.\\d{0,6})?'),
+        2: new RegExp('^-?\\d+(?:\.\\d{0,2})?')
     };
 
     constructor(
@@ -1382,24 +1446,27 @@ export class TokenService {
     parseAsset(symbol: string, amount): BigNumber {
 
         if (symbol === 'ETH') {
-            // @ts-ignore
             return ethers.utils.parseEther(amount);
         }
 
         const token = this.tokens[symbol];
-        // @ts-ignore
         return ethers.utils.parseUnits(this.toFixed(amount, token.decimals), token.decimals);
     }
 
     toFixed(num, fixed) {
-        const re = new RegExp('^-?\\d+(?:\.\\d{0,' + (fixed || -1) + '})?');
-        return num.toString().match(re)[0];
+
+        if (!this.re[fixed]) {
+
+            this.re[fixed] = new RegExp('^-?\\d+(?:\.\\d{0,' + (fixed || -1) + '})?');
+        }
+
+        return num.toString().match(this.re[fixed])[0];
     }
 
     formatAsset(symbol: string, amount: BigNumber): string {
 
         if (symbol === 'ETH') {
-            return ethers.utils.formatEther(amount);
+            return this.formatUnits(amount, 18);
         }
 
         const token = this.tokens[symbol];
@@ -1409,8 +1476,48 @@ export class TokenService {
             return amount.toString();
         } else {
 
-            return ethers.utils.formatUnits(amount, token.decimals);
+            return this.formatUnits(amount, token.decimals);
         }
+    }
+
+    formatUnits(value: BigNumber, decimals: number) {
+
+        const result = value.toString();
+
+        if (!result || result === '0') {
+
+            return '0';
+        }
+
+        const zeros = '000000000000000000000000000000000000000000000000000000000000000000000000';
+
+        let start = '';
+        let end = '';
+
+        if (result.length > decimals) {
+
+            start = result.slice(0, result.length - decimals);
+            end = result.slice(result.length - decimals);
+
+        } else {
+
+            start = '0';
+            end = zeros.slice(0, decimals - result.length) + result;
+        }
+
+        for (let i = end.length - 1; i >= 0; i--) {
+
+            if (end[i] !== '0') {
+                end = end.substr(0, i + 1);
+                break;
+            }
+
+            if (i == 0) {
+                end = '';
+            }
+        }
+
+        return start + (end.length ? '.' : '') + end;
     }
 
     async getTokenBalance(symbol: string, address: string) {
@@ -1420,6 +1527,8 @@ export class TokenService {
             this.tokens[symbol].address
         );
 
-        return ethers.utils.bigNumberify(await contract.methods.balanceOf(address).call());
+        return ethers.utils.bigNumberify(
+            await contract.methods.balanceOf(address).call()
+        );
     }
 }

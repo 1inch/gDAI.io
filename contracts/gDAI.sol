@@ -66,9 +66,12 @@ contract gDAI is Ownable, EarnedInterestERC20, ERC20Detailed, GasDiscounter, GSN
 
         uint256 daiExtracted = _getFromFulcrum(daiNeeded);
         uint256 interest = earnedInterest(_msgSender());
+
         if (daiExtracted < interest) {
+
             _setEarnedInteres(_msgSender(), interest.sub(daiExtracted));
         } else {
+
             _setEarnedInteres(_msgSender(), 0);
             _burn(_msgSender(), daiExtracted.sub(interest));
         }
