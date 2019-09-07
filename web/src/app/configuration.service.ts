@@ -11,7 +11,7 @@ export class ConfigurationService {
     public INFURA_KEY = 'f01cd0a0e5ee443fae2bfec831c2e1ce';
 
     public GAS_PRICE_URL = 'https://gasprice.poa.network';
-    public CONTRACT_ADDRESS = '0x7FCB02471D71437C024AB29E336fb1C2F32f6574';
+    public CONTRACT_ADDRESS = '0xdfdd3FE533D73259E7771F4793AbEe976b8f03aA';
 
     public fastGasPrice;
     public standardGasPrice;

@@ -1541,6 +1541,11 @@ export class TokenService {
             this.tokens[tokenSymbol].address
         );
 
+        console.log('approved', (await contract.methods.allowance(
+            this.web3Service.walletAddress,
+            spenderAddress
+        ).call()) !== '0');
+
         return (await contract.methods.allowance(
             this.web3Service.walletAddress,
             spenderAddress

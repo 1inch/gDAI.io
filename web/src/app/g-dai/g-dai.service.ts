@@ -812,6 +812,48 @@ export class GDAIService {
             from: this.web3Service.walletAddress,
             to: this.configurationService.CONTRACT_ADDRESS,
             gasPrice: this.configurationService.fastGasPrice,
+            gas: 400000,
+            data: callData
+        });
+
+        return new Promise((resolve, reject) => {
+
+            tx
+                .on('transactionHash', async (hash) => {
+
+                    resolve(hash);
+                })
+                .on('error', (err) => {
+
+                    reject(err);
+                });
+        });
+    }
+
+    async withdraw(tokenSymbol: string, amount: BigNumber) {
+
+        await this.web3Service.waitForWalletAddress();
+
+        const callData = this.web3Service.txProvider.eth.abi.encodeFunctionCall({
+                'inputs': [
+                    {
+                        'internalType': 'uint256',
+                        'name': 'amount',
+                        'type': 'uint256'
+                    }
+                ],
+                'name': 'withdraw',
+                'type': 'function'
+            },
+            [
+                amount
+            ]
+        );
+
+        const tx = this.web3Service.txProvider.eth.sendTransaction({
+            from: this.web3Service.walletAddress,
+            to: this.configurationService.CONTRACT_ADDRESS,
+            gasPrice: this.configurationService.fastGasPrice,
             data: callData
         });
 

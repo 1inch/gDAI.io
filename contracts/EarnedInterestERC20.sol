@@ -22,7 +22,7 @@ contract EarnedInterestERC20 is ERC20 {
 
     function _setEarnedInteres(address user, uint256 interest) internal {
 
-        priceOf[user] = fulcrum.tokenPrice().add(
+        priceOf[user] = fulcrum.tokenPrice().sub(
             interest.mul(1e18).div(balanceOf(user))
         );
     }

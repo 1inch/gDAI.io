@@ -1,4 +1,4 @@
-<div class="container mt-2 mt-md-5 p-0 p-md-3">
+<div class="container mt-4 mt-md-5 p-0 p-md-3 mb-5">
 
     <div class="card mr-auto ml-auto col-lg-10" style="background-color: #f8f9f;">
         <h5 class="card-title border-bottom m-0 mb-3 pb-3 pt-3 row justify-content-center"
@@ -6,17 +6,20 @@
             <span class="mr-md-auto d-block d-md-inline-block mb-2 mb-md-0 text-center text-md-left">
                 Balance:
                 <div class="d-block d-md-inline mt-2 mt-md-0">
-                     <strong>{{walletBalance}}</strong>
-                    gDAI <img height="24" src="assets/logo-simply.svg">
-
-                    <div class="d-block d-md-inline mt-2 mt-md-0">
+                    <div class="d-block d-md-inline">
+                        <strong>{{walletBalance}}</strong> gDAI <img height="24" src="assets/logo-simply.svg">
+                    </div>
+                    <div class="d-block d-md-inline mt-3 mt-md-0">
                         <button (click)="openDepositModal()" *ngIf="web3Service.walletAddress"
-                                class="btn btn-sm btn-success ml-2">Deposit</button>
-                        <button (click)="connect()" *ngIf="!web3Service.walletAddress" class="btn btn-sm btn-warning ml-2">Connect</button>
+                                class="btn btn-sm btn-success ml-2">Deposit DAI</button>
+                        <button (click)="openWithdrawModal()" *ngIf="web3Service.walletAddress && walletBalance != '0'"
+                                class="btn btn-sm btn-danger ml-2">Withdraw DAI</button>
+                        <button (click)="connect()" *ngIf="!web3Service.walletAddress"
+                                class="btn btn-sm btn-warning ml-2">Connect</button>
                     </div>
                 </div>
             </span>
-            <span class="ml-md-auto d-block d-md-inline-block text-center text-md-left">
+            <span class="ml-md-auto d-block d-md-inline-block text-center text-md-left mt-2 mt-md-0">
                 Power:
                 <div class="d-block d-md-inline mt-2 mt-md-0">
                     <strong class="d-none d-md-inline">{{earnedInterest}}</strong>
@@ -29,8 +32,34 @@
 
             <app-loading-spinner *ngIf="loading"></app-loading-spinner>
 
-            <div *ngIf="!loading">
+            <div *ngIf="!loading" class="row">
 
+                <form #f="ngForm" class="pt-4 ml-auto mr-auto col-12 col-md-6" novalidate>
+                    <div class="form-row justify-content-md-center">
+                        <div class="form-group col-md-12">
+                            <small (click)="setSendAmount()"
+                                   class="form-text text-muted text-left position-relative mb-1"
+                                   id="sendWalletBalance"
+                                   style="margin-top: -23px; white-space: nowrap;overflow: hidden;text-overflow: ellipsis; cursor: pointer;">
+                                Max: {{tokenService.toFixed(walletBalance, 12)}}
+                            </small>
+                            <input [formControl]="sendAmountControl"
+                                   aria-describedby="sendWalletBalance" autocomplete="off"
+                                   class="form-control text-left" id="sendAmount" inputmode="numeric"
+                                   name="sendAmount" numeric numericType="decimal" pattern="[0-9]*" placeholder="0"
+                                   type="string">
+
+                            <div class="mt-3 text-center">
+                                <button class="btn btn-info btn-lg" (click)="send()">
+                                    Send
+                                </button>
+                                <button class="btn btn-secondary btn-lg ml-2" (click)="openReceiveModal()">
+                                    Receive
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -77,6 +106,77 @@
                         <div class="mt-3 text-center">
                             <button (click)="deposit()" class="btn btn-success">
                                 Deposit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #receiveTemplate>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">
+            Receive
+        </h4>
+        <button (click)="receiveTemplateModalRef.hide()" aria-label="Close" class="close pull-right" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <div *ngIf="modalLoading">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+
+        <div *ngIf="!modalLoading">
+            QR Code!
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #withdrawTemplate>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">
+            Withdraw
+        </h4>
+        <button (click)="withdrawTemplateModalRef.hide()" aria-label="Close" class="close pull-right" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <div *ngIf="modalLoading">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+
+        <div *ngIf="modalTxHash">
+            <ngb-alert (close)="modalTxHash = true" class="mb-5" type="success">
+                Transaction was successfully send.<br> <a
+                [href]="'https://etherscan.io/tx/' + modalTxHash" target="_blank">See on etherscan.io</a>
+            </ngb-alert>
+        </div>
+
+        <div *ngIf="!modalLoading && !modalTxHash">
+            <form #f="ngForm" class="pt-4" novalidate>
+                <div class="form-row justify-content-md-center">
+                    <div class="form-group col-md-12">
+                        <small (click)="setWithdrawAmount()"
+                               class="form-text text-muted text-left position-relative mb-1"
+                               id="walletBalance"
+                               style="margin-top: -23px; white-space: nowrap;overflow: hidden;text-overflow: ellipsis; cursor: pointer;">
+                            Max: {{tokenService.toFixed(walletBalance, 12)}}
+                        </small>
+                        <input [formControl]="withdrawAmountControl"
+                               aria-describedby="walletBalance" autocomplete="off"
+                               class="form-control text-left" id="withdrawAmount" inputmode="numeric"
+                               name="withdrawAmount" numeric numericType="decimal" pattern="[0-9]*" placeholder="0"
+                               type="string">
+
+                        <div class="mt-3 text-center">
+                            <button (click)="withdraw()" class="btn btn-danger">
+                                Withdraw
                             </button>
                         </div>
                     </div>

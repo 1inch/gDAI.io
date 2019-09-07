@@ -25,15 +25,27 @@ export class GDaiComponent implements OnInit {
     mobileEarnedInterest = '0';
 
     depositTemplateModalRef: BsModalRef;
+    withdrawTemplateModalRef: BsModalRef;
+    receiveTemplateModalRef: BsModalRef;
 
     fromTokenAmountControl = new FormControl('');
+    withdrawAmountControl = new FormControl('');
+    sendAmountControl = new FormControl('');
     fromTokenAmount;
+    withdrawAmount;
+    sendAmount;
     fromTokenBalance = '0';
     fromTokenBalanceBN = ethers.utils.bigNumberify(0);
     fromToken = 'DAI';
 
     @ViewChild('depositTemplate', {static: false})
     depositTemplate: TemplateRef<any>;
+
+    @ViewChild('withdrawTemplate', {static: false})
+    withdrawTemplate: TemplateRef<any>;
+
+    @ViewChild('receiveTemplate', {static: false})
+    receiveTemplate: TemplateRef<any>;
 
     constructor(
         public gDaiService: GDAIService,
@@ -62,6 +74,10 @@ export class GDaiComponent implements OnInit {
         );
 
         this.initFromTokenAmount();
+        this.initWithdrawAmount();
+        this.initSendAmount();
+
+        this.loading = false;
     }
 
     async setWalletBalance() {
@@ -82,7 +98,7 @@ export class GDaiComponent implements OnInit {
                 this.fromToken,
                 await this.gDaiService.getEarnedInterest()
             ),
-            18
+            16
         );
 
         this.mobileEarnedInterest = this.tokenService.toFixed(
@@ -120,15 +136,70 @@ export class GDaiComponent implements OnInit {
         }
     }
 
+    async initWithdrawAmount() {
+
+        this.withdrawAmountControl.valueChanges.pipe(
+            debounceTime(200),
+            filter((value, index) => this.isNumeric(value) && value !== 0 && !value.match(/^([0\.]+)$/)),
+            distinctUntilChanged(),
+        )
+            .subscribe((value) => {
+
+                this.withdrawAmount = value;
+                localStorage.setItem('withdrawAmount', this.withdrawAmount);
+            });
+
+        if (localStorage.getItem('withdrawAmount')) {
+
+            this.withdrawAmountControl.setValue(localStorage.getItem('withdrawAmount'));
+        } else {
+
+            this.withdrawAmountControl.setValue('1.0');
+        }
+    }
+
+    async initSendAmount() {
+
+        this.sendAmountControl.valueChanges.pipe(
+            debounceTime(200),
+            filter((value, index) => this.isNumeric(value) && value !== 0 && !value.match(/^([0\.]+)$/)),
+            distinctUntilChanged(),
+        )
+            .subscribe((value) => {
+
+                this.sendAmount = value;
+                localStorage.setItem('sendAmount', this.sendAmount);
+            });
+
+        if (localStorage.getItem('sendAmount')) {
+
+            this.sendAmountControl.setValue(localStorage.getItem('sendAmount'));
+        } else {
+
+            this.sendAmountControl.setValue('1.0');
+        }
+    }
+
     async connect() {
 
         this.connectService.startConnectEvent.next();
+    }
+
+    async openWithdrawModal() {
+
+        this.loadTokenBalance();
+        this.withdrawTemplateModalRef = this.modalService.show(this.withdrawTemplate);
     }
 
     async openDepositModal() {
 
         this.loadTokenBalance();
         this.depositTemplateModalRef = this.modalService.show(this.depositTemplate);
+    }
+
+    async openReceiveModal() {
+
+        this.receiveTemplateModalRef = this.modalService.show(this.receiveTemplate);
     }
 
     async deposit() {
@@ -156,9 +227,69 @@ export class GDaiComponent implements OnInit {
         this.modalLoading = false;
     }
 
+    async withdraw() {
+
+        this.modalLoading = true;
+
+        try {
+
+            const hash = await this.gDaiService.withdraw(
+                this.fromToken,
+                this.tokenService.parseAsset(this.fromToken, this.withdrawAmount)
+            );
+
+            this.modalTxHash = hash;
+
+            setTimeout(() => {
+                this.modalTxHash = null;
+            }, 10000);
+        } catch (e) {
+
+            alert(e);
+            console.error(e);
+        }
+
+        this.modalLoading = false;
+    }
+
+    async send() {
+
+        this.loading = true;
+
+        try {
+
+            // const hash = await this.gDaiService.send(
+            //     this.fromToken,
+            //     this.tokenService.parseAsset(this.fromToken, this.sendAmount)
+            // );
+            //
+            // this.modalTxHash = hash;
+
+            // setTimeout(() => {
+            //     this.modalTxHash = null;
+            // }, 10000);
+        } catch (e) {
+
+            alert(e);
+            console.error(e);
+        }
+
+        this.loading = false;
+    }
+
     async setFromTokenAmount() {
 
         this.fromTokenAmountControl.setValue(this.fromTokenBalance);
+    }
+
+    async setWithdrawAmount() {
+
+        this.withdrawAmountControl.setValue(this.walletBalance);
+    }
+
+    async setSendAmount() {
+
+        this.sendAmountControl.setValue(this.walletBalance);
     }
 
     async loadTokenBalance() {
