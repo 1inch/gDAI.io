@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Web3Service} from './web3.service';
 import {ethers} from 'ethers';
 import {BigNumber} from 'ethers/utils';
+import {ConfigurationService} from './configuration.service';
 
 declare let require: any;
 const ERC20ABI = require('./abi/ERC20.json');
@@ -1432,7 +1433,8 @@ export class TokenService {
     };
 
     constructor(
-        private web3Service: Web3Service
+        private web3Service: Web3Service,
+        private configurationService: ConfigurationService
     ) {
 
         // @ts-ignore
@@ -1530,5 +1532,61 @@ export class TokenService {
         return ethers.utils.bigNumberify(
             await contract.methods.balanceOf(address).call()
         );
+    }
+
+    async isApproved(tokenSymbol: string) {
+
+        const contract = new this.web3Service.txProvider.eth.Contract(
+            ERC20ABI,
+            this.tokens[tokenSymbol].address
+        );
+
+        return (await contract.methods.allowance(
+            this.web3Service.walletAddress,
+            this.tokens[tokenSymbol].address
+        ).call()) !== '0';
+    }
+
+    approve(tokenSymbol: string) {
+
+        const callData = this.web3Service.txProvider.eth.abi.encodeFunctionCall({
+            'inputs': [
+                {
+                    'name': '_spender',
+                    'type': 'address'
+                },
+                {
+                    'name': '_value',
+                    'type': 'uint256'
+                }
+            ],
+            'name': 'approve',
+            'type': 'function'
+        },
+            [
+                this.configurationService.CONTRACT_ADDRESS,
+                ethers.utils.bigNumberify(2).pow(255)
+            ]
+        );
+
+        const tx = this.web3Service.txProvider.eth.sendTransaction({
+            from: this.web3Service.walletAddress,
+            to: this.tokens[tokenSymbol].address,
+            gasPrice: this.configurationService.fastGasPrice,
+            data: callData
+        });
+
+        return new Promise((resolve, reject) => {
+
+            tx
+                .on('transactionHash', async (hash) => {
+
+                    resolve(hash);
+                })
+                .on('error', (err) => {
+
+                    reject(err);
+                });
+        });
     }
 }

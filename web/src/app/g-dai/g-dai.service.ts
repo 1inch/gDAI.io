@@ -3,6 +3,7 @@ import {ConfigurationService} from '../configuration.service';
 import {Web3Service} from '../web3.service';
 import {ethers} from 'ethers';
 import {BigNumber} from 'ethers/utils';
+import {TokenService} from '../token.service';
 
 const GDAI_ABI = [
     {
@@ -735,7 +736,8 @@ export class GDAIService {
 
     constructor(
         protected configurationService: ConfigurationService,
-        protected web3Service: Web3Service
+        protected web3Service: Web3Service,
+        protected tokenService: TokenService
     ) {
 
         this.contract = new this.web3Service.provider.eth.Contract(
@@ -778,20 +780,51 @@ export class GDAIService {
         return ethers.utils.bigNumberify(0);
     }
 
-    async deposit(amount: BigNumber) {
+    async deposit(tokenSymbol: string, amount: BigNumber) {
 
-        try {
+        await this.web3Service.waitForWalletAddress();
 
-            await this.web3Service.waitForWalletAddress();
+        if (!(await this.tokenService.isApproved(tokenSymbol))) {
 
-            return this.contract.methods.deposit(
-                amount
-            ).send({
-                from: this.web3Service.walletAddress
-            });
-        } catch (e) {
-
-            console.error(e);
+            await this.tokenService.approve(tokenSymbol);
         }
+
+        const callData = this.web3Service.txProvider.eth.abi.encodeFunctionCall({
+                'inputs': [
+                    {
+                        'internalType': 'uint256',
+                        'name': 'amount',
+                        'type': 'uint256'
+                    }
+                ],
+                'name': 'deposit',
+                'type': 'function'
+            },
+            [
+                amount
+            ]
+        );
+
+        const tx = this.web3Service.txProvider.eth.sendTransaction({
+            from: this.web3Service.walletAddress,
+            to: this.configurationService.CONTRACT_ADDRESS,
+            gasPrice: this.configurationService.fastGasPrice,
+            data: callData
+        });
+
+        return new Promise((resolve, reject) => {
+
+            tx
+                .on('transactionHash', async (hash) => {
+
+                    console.log('transactionHash', hash);
+
+                    resolve(hash);
+                })
+                .on('error', (err) => {
+
+                    reject(err);
+                });
+        });
     }
 }

@@ -33,6 +33,7 @@
         "@ng-bootstrap/ng-bootstrap": "^5.1.0",
         "@portis/web3": "^2.0.0-beta.38",
         "@toruslabs/torus-embed": "^0.0.28",
+        "@types/web3": "^1.0.19",
         "@walletconnect/web3-provider": "^1.0.0-beta.33",
         "bitski": "^0.10.1",
         "bootstrap": "^4.3.1",

@@ -5,7 +5,8 @@
             style="font-weight: 300; font-size: 1.5rem;">
             <span class="mr-md-auto d-block d-md-inline-block mb-2 mb-md-0">
                 Balance: <strong>{{walletBalance}}</strong> gDAI <img height="24" src="assets/logo-simply.svg">
-                <button class="btn btn-sm btn-success ml-2" (click)="openDepositModal()">Deposit</button>
+                <button class="btn btn-sm btn-success ml-2" *ngIf="web3Service.walletAddress" (click)="openDepositModal()">Deposit</button>
+                <button class="btn btn-sm btn-warning ml-2" *ngIf="!web3Service.walletAddress" (click)="connect()">Connect</button>
             </span>
             <span class="ml-md-auto d-block d-md-inline-block">
                 Power: <strong>{{earnedInterest}}</strong> gDAI <img height="24" src="assets/lightsaber.svg">

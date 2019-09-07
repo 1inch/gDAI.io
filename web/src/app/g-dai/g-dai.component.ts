@@ -6,6 +6,7 @@ import {FormControl} from '@angular/forms';
 import {ethers} from 'ethers';
 import {debounceTime, distinctUntilChanged, filter} from 'rxjs/operators';
 import {Web3Service} from '../web3.service';
+import {ConnectService} from '../connect.service';
 
 @Component({
     selector: 'app-g-dai',
@@ -32,10 +33,11 @@ export class GDaiComponent implements OnInit {
     depositTemplate: TemplateRef<any>;
 
     constructor(
-        protected gDaiService: GDAIService,
-        protected tokenService: TokenService,
-        protected web3Service: Web3Service,
-        protected modalService: BsModalService
+        public gDaiService: GDAIService,
+        public tokenService: TokenService,
+        public web3Service: Web3Service,
+        public modalService: BsModalService,
+        public connectService: ConnectService
     ) {
     }
 
@@ -101,6 +103,11 @@ export class GDaiComponent implements OnInit {
         }
     }
 
+    async connect() {
+
+        this.connectService.startConnectEvent.next();
+    }
+
     async openDepositModal() {
 
         this.loadTokenBalance();
@@ -114,6 +121,7 @@ export class GDaiComponent implements OnInit {
         try {
 
             await this.gDaiService.deposit(
+                this.fromToken,
                 this.tokenService.parseAsset(this.fromToken, this.fromTokenAmount)
             );
         } catch (e) {
