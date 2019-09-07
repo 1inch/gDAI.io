@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1567869210002,
+  "timestamp": 1567869516688,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -105,7 +105,7 @@
     "/assets/trust-wallet.png": "7fcf5ba66868259c8ddb9526ff15999f62ec25c2",
     "/assets/wallet-connect.png": "405a77eb97c6d08b2f1a6a793e128a607ea2e881",
     "/favicon.ico": "9255b817b48d987376ab35bd10afaaaeeec80215",
-    "/index.html": "0cf39cd4a364dec6c42d5e1267fa76a50df490ce",
+    "/index.html": "9ae1cbd2feb4944fdcf438fc045f61c85147b41b",
     "/main.d0cb30ffe4dde59a514a.js": "12898858e8b837a39e0a2bd5a2c04c3edfdbf0bc",
     "/manifest.webmanifest": "c92d7dc3616fe94626656601a4c1cf0a5e9fc359",
     "/polyfills-es5.c5733f831476514616ca.js": "f51d407f298ad182b412fa2497c451a7194b3b67",
