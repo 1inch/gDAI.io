@@ -14,6 +14,7 @@ import createLedgerSubprovider from '@ledgerhq/web3-subprovider';
 import Web3 from 'web3';
 import {Subject} from 'rxjs';
 import {Bitski} from 'bitski';
+import {ethers} from 'ethers';
 
 declare let require: any;
 declare let web3: any;
@@ -52,6 +53,14 @@ export class Web3Service {
     }
 
     async initWeb3() {
+
+        const oneInch = new ethers.providers.JsonRpcProvider(this.rpcUrl);
+        const infura = new ethers.providers.InfuraProvider('homestead', this.configurationService.INFURA_KEY);
+
+        this.ethersProvider = new ethers.providers.FallbackProvider([
+            oneInch,
+            infura,
+        ]);
 
         const webSocketProvider = new Web3.providers.WebsocketProvider(
             'wss://ws.parity.1inch.exchange'
@@ -239,7 +248,7 @@ export class Web3Service {
 
         try {
 
-            const sqlk = new Squarelink('');
+            const sqlk = new Squarelink('70afd2513e1cf55d3435');
 
             this.txProvider = new Web3(
                 sqlk.getProvider()
@@ -259,7 +268,7 @@ export class Web3Service {
     async enableFortmaticTxProvider() {
 
         try {
-            const fm = new Fortmatic('');
+            const fm = new Fortmatic('pk_live_7BCE996AE3CFEEC5');
 
             this.txProvider = new Web3(
                 fm.getProvider()
@@ -280,7 +289,7 @@ export class Web3Service {
 
         try {
 
-            const portis = new Portis('', 'mainnet');
+            const portis = new Portis('89075d3e-a065-4752-ba0f-1e3e839efebf', 'mainnet');
 
             this.txProvider = new Web3(
                 portis.provider
@@ -347,7 +356,7 @@ export class Web3Service {
 
         try {
 
-            const bitski = new Bitski('', 'https://1inch.exchange/bitski-callback.html');
+            const bitski = new Bitski('95c821ef-1f25-45e2-9435-64c8e6e5a2b6', 'https://gdai.io/bitski-callback.html');
             const provider = bitski.getProvider();
 
             // @ts-ignore
