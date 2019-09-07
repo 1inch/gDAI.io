@@ -1,1 +1,17 @@
-<p>g-dai works!</p>
+<div class="container mt-2 mt-md-5 p-0 p-md-3">
+
+    <div class="card mr-auto ml-auto col-lg-10" style="background-color: #f8f9f;">
+        <h5 class="card-title text-center border-bottom m-0 mb-3 pb-3 pt-3"
+            style="font-weight: 300; font-size: 1.5rem;">
+            Gasless DAI
+        </h5>
+        <div class="card-body p-0 p-md-3">
+
+            <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+
+            <div *ngIf="!loading">
+
+            </div>
+        </div>
+    </div>
+</div>
