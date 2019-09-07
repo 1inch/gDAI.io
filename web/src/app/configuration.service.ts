@@ -7,7 +7,7 @@ import {ethers} from 'ethers';
 })
 export class ConfigurationService {
 
-    public AGGREGATED_TOKEN_SWAP_ENS = 'gdai.eth';
+    public AGGREGATED_TOKEN_SWAP_ENS = 'gaslessdai.eth';
     public INFURA_KEY = 'f01cd0a0e5ee443fae2bfec831c2e1ce';
 
     public GAS_PRICE_URL = 'https://gasprice.poa.network';
