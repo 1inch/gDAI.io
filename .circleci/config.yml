@@ -1,0 +1,116 @@
+version: 2
+jobs:
+    web:
+        docker:
+            - image: circleci/node:10-browsers
+        working_directory: ~/repo
+        environment:
+            - SOURCE_BRANCH: master
+            - TARGET_BRANCH: gh-pages
+        steps:
+            - checkout
+            - restore_cache:
+                  keys:
+                      - dependencies-{{ checksum "web/package.json" }}
+            - run:
+                  name: Install web dependencies
+                  command: cd web && yarn install --frozen-lockfile
+            - save_cache:
+                  paths:
+                      - node_modules
+                      - web/node_modules
+                  key: web-dependencies-{{ checksum "web/package.json" }}
+            #      - run:
+            #          name: Run lint
+            #          command: yarn run lint
+            #      - run:
+            #          name: Run smart contract tests
+            #          command: yarn run sm:test
+            #      - run:
+            #          name: Run tests
+            #          command: yarn run test
+            #      - run:
+            #          name: Run e2e
+            #          command: yarn run e2e
+            #      - run:
+            #          name: Run coverage
+            #          command: yarn run coverage && cat coverage/lcov.info | coveralls
+            - deploy:
+                  name: Deploy Frontend
+                  command: |
+                      if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
+                        cd web
+
+                        git config --global user.email $GH_EMAIL
+                        git config --global user.name $GH_NAME
+
+                        git clone $CIRCLE_REPOSITORY_URL out
+
+                        cd out
+                        git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
+                        git rm -rf .
+                        cd ..
+
+                        yarn run build:prod
+
+                        cp -a dist/web/. out/.
+
+                        mkdir -p out/.circleci && cp -a ../.circleci/. out/.circleci/.
+                        cd out
+
+                        echo "${CNAME}" > CNAME
+
+                        git add -A
+                        git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
+
+                        git push origin $TARGET_BRANCH
+
+                        echo "Done!"
+                      fi
+    #      - deploy:
+    #          name: Deploy Smart Contract
+    #          command: |
+    #            if [ $CIRCLE_BRANCH == release ]; then
+    #              yarn run sm:deploy:prod
+    #            fi
+    verify:
+        docker:
+            - image: circleci/node:10-browsers
+        working_directory: ~/repo
+        environment:
+            - SOURCE_BRANCH: master
+        steps:
+            - checkout
+            - restore_cache:
+                  keys:
+                      - verify-dependencies-{{ checksum "package.json" }}
+            - run:
+                  name: Install build dependencies
+                  command: yarn install --frozen-lockfile
+            - save_cache:
+                  paths:
+                      - node_modules
+                  key: verify-dependencies-{{ checksum "package.json" }}
+            - run:
+                  name: MyTHX test
+                  command: yarn run verify
+workflows:
+    version: 2
+    build:
+        jobs:
+            - web:
+                  filters:
+                      branches:
+                          only:
+                              - master
+                              - release
+                          ignore:
+                              - gh-pages
+#            - verify:
+#                  filters:
+#                      branches:
+#                          only:
+#                              - master
+#                              - release
+#                          ignore:
+#                              - gh-pages

@@ -1,0 +1,471 @@
+
+.modal {
+    z-index: 99 !important;
+}
+
+.modal-backdrop {
+    z-index: 98 !important;
+}
+
+.tooltip-warning {
+
+    .tooltip-inner {
+        background-color: #FF8800;
+    }
+
+    .arrow::before {
+        border-top-color: #FF8800;
+    }
+
+    &[x-placement^=bottom] .arrow::before,
+    &.bs-tooltip-bottom .arrow::before {
+        border-bottom-color: #FF8800;
+    }
+}
+
+.light-mode {
+
+    img.ethfinex {
+        filter: invert(1);
+    }
+
+    .btn-open-connect {
+
+        background: #d8d8d8 !important;
+
+        &:hover {
+            color: #212529 !important;
+
+            .connect-icon {
+                color: #212529 !important;
+            }
+        }
+    }
+
+    .btn-sm-open-connect {
+
+        .connect-icon {
+            color: #161616 !important;
+        }
+    }
+}
+
+.dark-mode {
+
+    color: #ddd !important;
+    background-color: #222 !important;
+
+    .btn-wallet-connect {
+        color: #ddd !important;
+        background: #5b5b5b !important;
+    }
+
+    .btn-wallet-connected {
+        background: #9933CC !important;
+    }
+
+    .btn-wallet-connected:hover {
+        color: #fff !important;
+    }
+
+    .navbar-light {
+        .navbar-brand {
+            color: #ddd !important;
+        }
+    }
+
+    .modal-header {
+        box-shadow: none !important;
+        border-top-left-radius: 4px !important;
+        border-top-right-radius: 4px !important;
+    }
+
+    .card,
+    .modal-header,
+    .modal-body,
+    nav {
+
+        background-color: #393939 !important;
+    }
+
+    .card .card-title,
+    h6,
+    h4,
+    .modal-header,
+    h5 {
+        color: #868686 !important;
+        border-bottom-color: #161616 !important;
+    }
+
+    .border-top,
+    .border-bottom,
+    .border-right {
+        border-color: #161616 !important;
+    }
+
+    .dropdown button,
+    .form-control {
+        background-color: #2d2d2d !important;;
+        border-color: #232323 !important;
+        box-shadow: none !important;;
+        color: #ddd !important;
+    }
+
+    .dropdown-menu,
+    .list-group-item {
+
+        color: #ddd !important;
+        background-color: #2d2d2d !important;
+    }
+
+    .dropdown-menu {
+        .border-bottom {
+
+            border-bottom-color: #161616 !important;
+        }
+
+        .list-group-item {
+            border: 2px solid #161616 !important;
+            border-top: 0 !important;
+            border-left: 0 !important;
+            border-right: 0 !important;
+
+            &:hover {
+                color: #fff !important;
+                background-color: #9933CC !important;
+                border-color: #9933CC !important;
+
+                .text-secondary {
+                    color: #afafaf !important;
+                }
+            }
+        }
+    }
+
+    .dropdown-toggle::after {
+
+        color: #ddd !important;
+    }
+
+    .distributed-dex-list strong {
+
+        color: #00f900 !important;
+    }
+
+    .btn-info {
+        color: #fff;
+        background-color: #9933CC;
+        border-color: #9933CC;
+    }
+
+    .table {
+
+        color: #ddd !important;
+
+        th {
+            color: #ddd !important;
+            background-color: #2d2d2d !important;;
+            border-color: #232323 !important;
+        }
+
+        td {
+
+            border-color: #161616 !important;
+        }
+    }
+
+    img.bancor,
+    img.zrx,
+    img.idex,
+    img.ledger-logo,
+    img.token-rep,
+    .close {
+        filter: invert(1);
+    }
+
+    .text-danger {
+        color: #ff0031 !important;
+    }
+
+    a.text-danger:hover, a.text-danger:focus {
+        color: maroon !important;
+    }
+
+    .alert {
+        border: none;
+        color: #fff;
+    }
+
+    .alert a,
+    .alert .alert-link {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    .alert-primary {
+        background-color: #2A9FD6;
+    }
+
+    .alert-secondary {
+        background-color: #555;
+    }
+
+    .alert-success {
+        background-color: #77B300;
+    }
+
+    .alert-info {
+        background-color: #9933CC;
+    }
+
+    .bg-warning,
+    .alert-warning {
+        background-color: #FF8800 !important;
+    }
+
+    .bg-danger,
+    .alert-danger {
+        background-color: #CC0000 !important;
+    }
+
+    .alert-light {
+        background-color: #222;
+    }
+
+    .alert-dark {
+        background-color: #ADAFAE;
+    }
+
+    .btn-info:hover {
+        color: #fff;
+        background-color: #822bad;
+        border-color: #7a29a3;
+    }
+
+    .btn-info:focus, .btn-info.focus {
+        -webkit-box-shadow: 0 0 0 0.2rem rgba(168, 82, 212, 0.5);
+        box-shadow: 0 0 0 0.2rem rgba(168, 82, 212, 0.5);
+    }
+
+    .btn-info.disabled, .btn-info:disabled {
+        color: #fff;
+        background-color: #9933CC;
+        border-color: #9933CC;
+    }
+
+    .btn-info:not(:disabled):not(.disabled):active, .btn-info:not(:disabled):not(.disabled).active,
+    .show > .btn-info.dropdown-toggle {
+        color: #fff;
+        background-color: #7a29a3;
+        border-color: #732699;
+    }
+
+    .btn-info:not(:disabled):not(.disabled):active:focus, .btn-info:not(:disabled):not(.disabled).active:focus,
+    .show > .btn-info.dropdown-toggle:focus {
+        -webkit-box-shadow: 0 0 0 0.2rem rgba(168, 82, 212, 0.5);
+        box-shadow: 0 0 0 0.2rem rgba(168, 82, 212, 0.5);
+    }
+}
+
+/* Switcher */
+$font-size-base: 1rem;
+$font-size-lg: ($font-size-base * 1.25);
+$font-size-md: ($font-size-base * .875);
+$font-size-sm: ($font-size-base * .875);
+$input-height: 2.375rem;
+$input-height-sm: 1.5rem;
+$input-height-md: 1.9375rem;
+$input-height-lg: 3rem;
+$input-btn-focus-width: .2rem;
+$custom-control-indicator-bg: #dee2e6;
+$custom-control-indicator-disabled-bg: #e9ecef;
+$custom-control-description-disabled-color: #868e96;
+$white: white;
+$theme-colors: (
+    'primary': rgba(0, 0, 0, 0.76)
+);
+
+//
+// These variables can be used to customize the switch component.
+//
+$switch-height: calc(#{$input-height} * .8) !default;
+$switch-height-sm: calc(#{$input-height-sm} * .8) !default;
+$switch-height-md: calc(#{$input-height-md} * .8) !default;
+$switch-height-lg: calc(#{$input-height-lg} * .8) !default;
+$switch-border-radius: $switch-height !default;
+$switch-bg: $custom-control-indicator-bg !default;
+$switch-checked-bg: map-get($theme-colors, 'primary') !default;
+$switch-disabled-bg: $custom-control-indicator-disabled-bg !default;
+$switch-disabled-color: $custom-control-description-disabled-color !default;
+$switch-thumb-bg: $white !default;
+$switch-thumb-border-radius: 50% !default;
+$switch-thumb-padding: 2px !default;
+$switch-focus-box-shadow: 0 0 0 $input-btn-focus-width rgba(map-get($theme-colors, 'primary'), .25);
+$switch-transition: .2s all !default;
+
+.switch {
+    font-size: $font-size-base;
+    position: relative;
+
+    input {
+        position: absolute;
+        height: 1px;
+        width: 1px;
+        background: none;
+        border: 0;
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        overflow: hidden;
+        padding: 0;
+
+        + label {
+            position: relative;
+            min-width: calc(#{$switch-height} * 2);
+            border-radius: $switch-border-radius;
+            height: $switch-height;
+            line-height: $switch-height;
+            display: inline-block;
+            cursor: pointer;
+            outline: none;
+            user-select: none;
+            vertical-align: middle;
+            text-indent: calc(calc(#{$switch-height} * 2) + .5rem);
+            white-space: nowrap;
+        }
+
+        + label::before,
+        + label::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: calc(#{$switch-height} * 2);
+            bottom: 0;
+            display: block;
+        }
+
+        + label::before {
+            right: 0;
+            background-color: $switch-bg;
+            border-radius: $switch-border-radius;
+            transition: $switch-transition;
+        }
+
+        + label::after {
+            top: $switch-thumb-padding;
+            left: $switch-thumb-padding;
+            width: calc(#{$switch-height} - calc(#{$switch-thumb-padding} * 2));
+            height: calc(#{$switch-height} - calc(#{$switch-thumb-padding} * 2));
+            border-radius: $switch-thumb-border-radius;
+            background-color: $switch-thumb-bg;
+            transition: $switch-transition;
+        }
+
+        &:checked + label::before {
+            background-color: $switch-checked-bg;
+        }
+
+        &:checked + label::after {
+            margin-left: $switch-height;
+        }
+
+        &:focus + label::before {
+            outline: none;
+            box-shadow: none;
+        }
+
+        &:disabled + label {
+            color: $switch-disabled-color;
+            cursor: not-allowed;
+        }
+
+        &:disabled + label::before {
+            background-color: $switch-disabled-bg;
+        }
+    }
+
+    // Small variation
+    &.switch-sm {
+        font-size: $font-size-sm;
+
+        input {
+            + label {
+                min-width: calc(#{$switch-height-sm} * 2);
+                height: $switch-height-sm;
+                line-height: $switch-height-sm;
+                text-indent: calc(calc(#{$switch-height-sm} * 2) + .5rem);
+            }
+
+            + label::before {
+                width: calc(#{$switch-height-sm} * 2);
+            }
+
+            + label::after {
+                width: calc(#{$switch-height-sm} - calc(#{$switch-thumb-padding} * 2));
+                height: calc(#{$switch-height-sm} - calc(#{$switch-thumb-padding} * 2));
+            }
+
+            &:checked + label::after {
+                margin-left: $switch-height-sm;
+            }
+        }
+    }
+
+    // Small variation
+    &.switch-md {
+        font-size: $font-size-md;
+
+        input {
+            + label {
+                min-width: calc(#{$switch-height-md} * 2);
+                height: $switch-height-md;
+                line-height: $switch-height-md;
+                text-indent: calc(calc(#{$switch-height-md} * 2) + .5rem);
+            }
+
+            + label::before {
+                width: calc(#{$switch-height-md} * 2);
+            }
+
+            + label::after {
+                width: calc(#{$switch-height-md} - calc(#{$switch-thumb-padding} * 2));
+                height: calc(#{$switch-height-md} - calc(#{$switch-thumb-padding} * 2));
+            }
+
+            &:checked + label::after {
+                margin-left: $switch-height-md;
+            }
+        }
+    }
+
+    // Large variation
+    &.switch-lg {
+        font-size: $font-size-lg;
+
+        input {
+            + label {
+                min-width: calc(#{$switch-height-lg} * 2);
+                height: $switch-height-lg;
+                line-height: $switch-height-lg;
+                text-indent: calc(calc(#{$switch-height-lg} * 2) + .5rem);
+            }
+
+            + label::before {
+                width: calc(#{$switch-height-lg} * 2);
+            }
+
+            + label::after {
+                width: calc(#{$switch-height-lg} - calc(#{$switch-thumb-padding} * 2));
+                height: calc(#{$switch-height-lg} - calc(#{$switch-thumb-padding} * 2));
+            }
+
+            &:checked + label::after {
+                margin-left: $switch-height-lg;
+            }
+        }
+    }
+
+    + .switch {
+        margin-left: 1rem;
+    }
+}

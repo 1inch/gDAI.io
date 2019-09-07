@@ -1,0 +1,22 @@
+{
+    "name": "gdai",
+    "version": "1.0.0",
+    "description": "gDAI",
+    "scripts": {
+        "sm:test": "scripts/test.sh",
+        "sm:compile": "etherlime compile --runs 200",
+        "sm:deploy:dev": "etherlime compile && etherlime deploy",
+        "sm:flat": "etherlime flatten gDAI.sol",
+        "verify": "truffle run verify"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@openzeppelin/contracts": "^2.3.0",
+        "etherlime": "^2.2.0",
+        "etherlime-lib": "^1.1.3",
+        "truffle": "^5.0.33",
+        "truffle-flattener": "^1.4.0",
+        "truffle-security": "^1.5.5"
+    }
+}
