@@ -24,7 +24,7 @@ contract gDAI is Ownable, EarnedInterestERC20, ERC20Detailed, GasDiscounter {
 
             _compensateGas(gasProvided.sub(gasleft()));
         } else {
-            
+
             _makeGasDiscount(gasProvided.sub(gasleft()));
         }
     }

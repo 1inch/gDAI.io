@@ -1,4 +1,12 @@
 
+a {
+    color: #dc8627;
+
+    &:hover {
+        color: #fca427;
+    }
+}
+
 .modal {
     z-index: 99 !important;
 }

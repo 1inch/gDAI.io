@@ -82,10 +82,8 @@
 
     <div class="ml-auto mr-auto">
         <a class="navbar-brand" routerLink="/">
-            <img alt="1inch.exchange" height="70" src="assets/logo.svg">
-            <span class="d-none d-md-inline">
-               gDAI
-            </span>
+            <img alt="gdai.io" height="70" src="assets/logo-simply.svg">
+            <img alt="gDAI - Gasless DAI" class="ml-2 d-none d-md-inline-block" height="60" src="assets/logo-title.svg">
         </a>
     </div>
 
@@ -107,7 +105,9 @@
     <h5>ENS: <a href="https://etherscan.io/address/{{contractAddress}}"
                 target="_blank">{{(ensDomain ? ensDomain : 'is updating...')}}</a></h5>
     <h6 style="font-weight: 100; font-size: 0.9rem;">BUIDL <a href="https://eth.boston" targaet="_blank">@ETHBoston</a> 2019 by</h6>
-    <img alt="Crypto Maniacs" src="assets/cryptomaniacs.png" width="200">
+    <a href="https://twitter.com/ManiacsZone" target="_blank">
+        <img alt="Crypto Maniacs" src="assets/cryptomaniacs.png" width="200">
+    </a>
 </div>
 
 <ng-template #connectTemplate>
