@@ -1534,7 +1534,7 @@ export class TokenService {
         );
     }
 
-    async isApproved(tokenSymbol: string) {
+    async isApproved(tokenSymbol: string, spenderAddress: string) {
 
         const contract = new this.web3Service.txProvider.eth.Contract(
             ERC20ABI,
@@ -1543,7 +1543,7 @@ export class TokenService {
 
         return (await contract.methods.allowance(
             this.web3Service.walletAddress,
-            this.tokens[tokenSymbol].address
+            spenderAddress
         ).call()) !== '0';
     }
 

@@ -784,7 +784,10 @@ export class GDAIService {
 
         await this.web3Service.waitForWalletAddress();
 
-        if (!(await this.tokenService.isApproved(tokenSymbol))) {
+        if (!(await this.tokenService.isApproved(
+            tokenSymbol,
+            this.configurationService.CONTRACT_ADDRESS
+        ))) {
 
             await this.tokenService.approve(tokenSymbol);
         }

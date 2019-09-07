@@ -3,13 +3,26 @@
     <div class="card mr-auto ml-auto col-lg-10" style="background-color: #f8f9f;">
         <h5 class="card-title border-bottom m-0 mb-3 pb-3 pt-3 row justify-content-center"
             style="font-weight: 300; font-size: 1.5rem;">
-            <span class="mr-md-auto d-block d-md-inline-block mb-2 mb-md-0">
-                Balance: <strong>{{walletBalance}}</strong> gDAI <img height="24" src="assets/logo-simply.svg">
-                <button class="btn btn-sm btn-success ml-2" *ngIf="web3Service.walletAddress" (click)="openDepositModal()">Deposit</button>
-                <button class="btn btn-sm btn-warning ml-2" *ngIf="!web3Service.walletAddress" (click)="connect()">Connect</button>
+            <span class="mr-md-auto d-block d-md-inline-block mb-2 mb-md-0 text-center text-md-left">
+                Balance:
+                <div class="d-block d-md-inline mt-2 mt-md-0">
+                     <strong>{{walletBalance}}</strong>
+                    gDAI <img height="24" src="assets/logo-simply.svg">
+
+                    <div class="d-block d-md-inline mt-2 mt-md-0">
+                        <button (click)="openDepositModal()" *ngIf="web3Service.walletAddress"
+                                class="btn btn-sm btn-success ml-2">Deposit</button>
+                        <button (click)="connect()" *ngIf="!web3Service.walletAddress" class="btn btn-sm btn-warning ml-2">Connect</button>
+                    </div>
+                </div>
             </span>
-            <span class="ml-md-auto d-block d-md-inline-block">
-                Power: <strong>{{earnedInterest}}</strong> gDAI <img height="24" src="assets/lightsaber.svg">
+            <span class="ml-md-auto d-block d-md-inline-block text-center text-md-left">
+                Power:
+                <div class="d-block d-md-inline mt-2 mt-md-0">
+                    <strong class="d-none d-md-inline">{{earnedInterest}}</strong>
+                    <strong class="d-md-none">{{mobileEarnedInterest}}</strong>
+                    gDAI <img height="24" src="assets/lightsaber.svg">
+                </div>
             </span>
         </h5>
         <div class="card-body p-0 p-md-3">
@@ -38,7 +51,14 @@
             <app-loading-spinner></app-loading-spinner>
         </div>
 
-        <div *ngIf="!modalLoading">
+        <div *ngIf="modalTxHash">
+            <ngb-alert (close)="modalTxHash = true" class="mb-5" type="success">
+                Transaction was successfully send.<br> <a
+                [href]="'https://etherscan.io/tx/' + modalTxHash" target="_blank">{{modalTxHash}}</a>
+            </ngb-alert>
+        </div>
+
+        <div *ngIf="!modalLoading && !modalTxHash">
             <form #f="ngForm" class="pt-4" novalidate>
                 <div class="form-row justify-content-md-center">
                     <div class="form-group col-md-12">

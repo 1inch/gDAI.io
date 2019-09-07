@@ -5,6 +5,7 @@ import {GDaiComponent} from './g-dai.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {LoadingSpinnerModule} from '../loading-spinner/loading-spinner.module';
+import {NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     declarations: [GDaiComponent],
@@ -14,7 +15,8 @@ import {LoadingSpinnerModule} from '../loading-spinner/loading-spinner.module';
         FontAwesomeModule,
         GDaiRoutingModule,
         LoadingSpinnerModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgbAlertModule
     ]
 })
 export class GDaiModule {

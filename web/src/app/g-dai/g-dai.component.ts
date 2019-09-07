@@ -18,8 +18,11 @@ export class GDaiComponent implements OnInit {
     loading = true;
     modalLoading = false;
 
+    modalTxHash = null;
+
     walletBalance = '0';
     earnedInterest = '0';
+    mobileEarnedInterest = '0';
 
     depositTemplateModalRef: BsModalRef;
 
@@ -55,7 +58,7 @@ export class GDaiComponent implements OnInit {
             () => {
                 this.refreshInfos();
             },
-            12000
+            4000
         );
 
         this.initFromTokenAmount();
@@ -63,17 +66,31 @@ export class GDaiComponent implements OnInit {
 
     async setWalletBalance() {
 
-        this.walletBalance = this.tokenService.formatAsset(
-            this.fromToken,
-            await this.gDaiService.getWalletBalance()
+        this.walletBalance = this.tokenService.toFixed(
+            this.tokenService.formatAsset(
+                this.fromToken,
+                await this.gDaiService.getWalletBalance()
+            ),
+            8
         );
     }
 
     async setEarnedInterest() {
 
-        this.earnedInterest = this.tokenService.formatAsset(
-            this.fromToken,
-            await this.gDaiService.getEarnedInterest()
+        this.earnedInterest = this.tokenService.toFixed(
+            this.tokenService.formatAsset(
+                this.fromToken,
+                await this.gDaiService.getEarnedInterest()
+            ),
+            18
+        );
+
+        this.mobileEarnedInterest = this.tokenService.toFixed(
+            this.tokenService.formatAsset(
+                this.fromToken,
+                await this.gDaiService.getEarnedInterest()
+            ),
+            8
         );
     }
 
@@ -120,10 +137,16 @@ export class GDaiComponent implements OnInit {
 
         try {
 
-            await this.gDaiService.deposit(
+            const hash = await this.gDaiService.deposit(
                 this.fromToken,
                 this.tokenService.parseAsset(this.fromToken, this.fromTokenAmount)
             );
+
+            this.modalTxHash = hash;
+
+            setTimeout(() => {
+                this.modalTxHash = null;
+            }, 10000);
         } catch (e) {
 
             alert(e);
