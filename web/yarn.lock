@@ -1196,10 +1196,10 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@toruslabs/torus-embed@^0.0.26":
-  version "0.0.26"
-  resolved "https://registry.yarnpkg.com/@toruslabs/torus-embed/-/torus-embed-0.0.26.tgz#f54d51d4f28df73adbb18be12d2c5e958e96ff4d"
-  integrity sha512-e8Z6UR8LoiM5+1Eh9bpB7MzvXCv9KB79dLEhWHeDDYrZ5ozv/OdmupVk71uCkBO5j/aI3s6IU+J8FmiXbnJzoA==
+"@toruslabs/torus-embed@^0.0.28":
+  version "0.0.28"
+  resolved "https://registry.yarnpkg.com/@toruslabs/torus-embed/-/torus-embed-0.0.28.tgz#fee06c229824f241bbc98c449b4c72315a2ee530"
+  integrity sha512-m2bJTmVI9E01lyWlSBEpXOnqKTzJwlsQCnML92J0MNqAm5YI5NdxYuJy0sd6wrzHzLuo4jQcn69x2IWJv1kxAg==
   dependencies:
     json-rpc-engine "^5.1.1"
     json-rpc-middleware-stream "^2.1.1"

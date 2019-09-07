@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {ConfigurationService} from '../configuration.service';
 import {Web3Service} from '../web3.service';
 import {ethers} from 'ethers';
+import {BigNumber} from 'ethers/utils';
 
 const GDAI_ABI = [
     {
@@ -775,5 +776,22 @@ export class GDAIService {
         }
 
         return ethers.utils.bigNumberify(0);
+    }
+
+    async deposit(amount: BigNumber) {
+
+        try {
+
+            await this.web3Service.waitForWalletAddress();
+
+            return this.contract.methods.deposit(
+                amount
+            ).send({
+                from: this.web3Service.walletAddress
+            });
+        } catch (e) {
+
+            console.error(e);
+        }
     }
 }

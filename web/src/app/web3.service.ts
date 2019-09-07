@@ -175,19 +175,32 @@ export class Web3Service {
         this.walletIconSmall = Jazzicon(16, parseInt(this.walletAddress.slice(2, 10), 16));
         this.walletIcon = Jazzicon(32, parseInt(this.walletAddress.slice(2, 10), 32));
 
-        try {
-
-            this.walletEns = await this.ethersProvider.lookupAddress(this.walletAddress);
-
-        } catch (e) {
-
-            console.error(e);
-        }
+        this.setWalletEns();
 
         this.connectEvent.next({
             walletAddress: this.walletAddress,
             walletIcon: this.walletIcon
         });
+    }
+
+    async setWalletEns() {
+
+        try {
+
+            await this.waitForWalletAddress();
+
+            if (this.txProviderName === 'torus') {
+
+                console.log('userinfo', (await this.thirdPartyProvider.getUserInfo()));
+                this.walletEns = (await this.thirdPartyProvider.getUserInfo()).email;
+            } else {
+
+                this.walletEns = await this.ethersProvider.lookupAddress(this.walletAddress);
+            }
+        } catch (e) {
+
+            console.error(e);
+        }
     }
 
     async enableWeb3TxProvider() {
@@ -344,7 +357,7 @@ export class Web3Service {
             );
 
             this.txProviderName = 'torus';
-            this.thirdPartyProvider = torus.ethereum;
+            this.thirdPartyProvider = torus;
         } catch (e) {
 
             console.error(e);
