@@ -38,7 +38,7 @@ contract gDAI is Ownable, EarnedInterestERC20, ERC20Detailed, GasDiscounter, GSN
         dai.approve(address(fulcrum), uint256(- 1));
     }
 
-    function setFeeReceiver(address _feeReceiver) onlyOwner {
+    function setFeeReceiver(address _feeReceiver) public onlyOwner {
 
         feeReceiver = _feeReceiver;
     }
