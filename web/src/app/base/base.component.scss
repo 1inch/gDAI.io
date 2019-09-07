@@ -1,0 +1,102 @@
+.theme-switcher {
+    position: absolute;
+    right: 20px;
+}
+
+.btn-wallet-connect {
+    height: 120px;
+    width: 120px;
+    background: #efefef;
+    line-height: 100%;
+}
+
+.btn-wallet-connect:hover {
+    color: #ca35ff;
+    border: 1px solid #9933CC;
+}
+
+.btn-wallet-connected {
+    color: #ddd;
+    background: #9933CC;
+}
+
+.btn-wallet-connected:hover {
+    color: #fff;
+}
+
+.connect-icon {
+    width: 16px;
+    height: 16px;
+    top: -1px;
+    position: relative;
+    color: #868686;
+}
+
+.btn-open-connect {
+    max-width: 30%;
+    position: absolute;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 0;
+    background: #303030;
+    color: #868686;
+
+    .connected {
+        font-size: 0.8rem;
+        padding-bottom: 2px;
+    }
+
+    .wallet-icon {
+        position: relative;
+        top: 3px;
+        margin-right: 2px;
+    }
+}
+
+.btn-open-connect:hover {
+
+    color: #fff;
+
+    .connect-icon {
+        color: #fff;
+    }
+}
+
+.btn-sm-open-connect {
+
+    .connect-icon {
+        width: 32px;
+        height: 32px;
+        color: #fff;
+    }
+}
+
+
+h6 {
+
+    font-size: 1.5rem;
+    font-family: 'Baloo Bhai', cursive;
+    font-weight: 100;
+
+    text-align: center;
+
+    color: #c6d63c;
+    margin-top: 20px;
+}
+
+h6 .first {
+    color: #923db3;
+}
+
+h6 .second {
+    color: #f5468e;
+}
+
+h6 .third {
+    color: #ff803f;
+}
+
+.btn-disconnect {
+    color: #ca35ff;
+}

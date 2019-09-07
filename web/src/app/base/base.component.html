@@ -1,0 +1,293 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <button (click)="goBack()" [hidden]="!navigationService.showBackButton"
+            class="btn btn-link my-2 my-sm-0 text-dark" type="button">
+        <fa-icon [icon]="backIcon" style="font-size: 30px;"></fa-icon>
+    </button>
+
+    <button (click)="openConnectModal()"
+            class="btn btn-dark btn-open-connect my-2 my-sm-0 d-none d-md-inline-block position-absolute" type="button">
+
+        <div *ngIf="web3Service.walletAddress" class="connected align-middle">
+            <span #walletIconEl class="wallet-icon"></span>
+            {{web3Service.walletEns ? web3Service.walletEns : web3Service.walletAddress}}
+        </div>
+        <div *ngIf="!web3Service.walletAddress">
+            <svg class="connect-icon" height="47px" style="fill: currentColor;enable-background:new 0 0 47 47;"
+                 version="1.1" viewBox="0 0 47 47"
+                 width="47px" x="0px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                 y="0px">
+    <g>
+        <g id="Layer_1_110_">
+            <g>
+                <path d="M17.567,15.938l-2.859-2.702c0.333-0.605,0.539-1.29,0.539-2.029c0-2.342-1.897-4.239-4.24-4.239
+                    c-2.343,0-4.243,1.896-4.243,4.239c0,2.343,1.9,4.241,4.243,4.241c0.826,0,1.59-0.246,2.242-0.654l2.855,2.699
+                    C16.536,16.922,17.023,16.399,17.567,15.938z"/>
+                <path d="M29.66,15.6l3.799-6.393c0.374,0.107,0.762,0.184,1.169,0.184c2.347,0,4.244-1.898,4.244-4.241
+                    c0-2.342-1.897-4.239-4.244-4.239c-2.343,0-4.239,1.896-4.239,4.239c0,1.163,0.469,2.214,1.227,2.981l-3.787,6.375
+                    C28.48,14.801,29.094,15.169,29.66,15.6z"/>
+                <path d="M42.762,20.952c-1.824,0-3.369,1.159-3.968,2.775l-5.278-0.521c0,0.04,0.006,0.078,0.006,0.117
+                    c0,0.688-0.076,1.36-0.213,2.009l5.276,0.521c0.319,2.024,2.062,3.576,4.177,3.576c2.342,0,4.238-1.896,4.238-4.238
+                    C47,22.85,45.104,20.952,42.762,20.952z"/>
+                <path d="M28.197,37.624l-1.18-5.156c-0.666,0.232-1.359,0.398-2.082,0.481l1.182,5.157c-1.355,0.709-2.29,2.11-2.29,3.746
+                    c0,2.342,1.896,4.237,4.243,4.237c2.342,0,4.238-1.896,4.238-4.237C32.311,39.553,30.479,37.692,28.197,37.624z"/>
+                <path d="M14.357,25.37l-6.57,2.201c-0.758-1.158-2.063-1.926-3.548-1.926C1.896,25.645,0,27.542,0,29.884
+                    c0,2.345,1.896,4.242,4.239,4.242c2.341,0,4.242-1.897,4.242-4.242c0-0.098-0.021-0.188-0.029-0.284l6.591-2.207
+                    C14.746,26.752,14.51,26.077,14.357,25.37z"/>
+                <circle cx="23.83" cy="23.323" r="7.271"/>
+            </g>
+        </g>
+    </g>
+    </svg>
+            Connect
+        </div>
+    </button>
+
+    <button (click)="openConnectModal()"
+            class="btn btn-link btn-sm-open-connect my-1 my-sm-0 d-md-none position-absolute pt-0 pb-0 mt-0 mb-0"
+            type="button">
+
+        <div *ngIf="web3Service.walletAddress" class="connected align-middle">
+            <span #walletIconEl2 class="wallet-icon"></span>
+        </div>
+        <div *ngIf="!web3Service.walletAddress">
+            <svg class="connect-icon" height="47px" style="fill: currentColor;enable-background:new 0 0 47 47;"
+                 version="1.1" viewBox="0 0 47 47"
+                 width="47px" x="0px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                 y="0px">
+<g>
+	<g id="Layer_1_110_">
+		<g>
+			<path d="M17.567,15.938l-2.859-2.702c0.333-0.605,0.539-1.29,0.539-2.029c0-2.342-1.897-4.239-4.24-4.239
+				c-2.343,0-4.243,1.896-4.243,4.239c0,2.343,1.9,4.241,4.243,4.241c0.826,0,1.59-0.246,2.242-0.654l2.855,2.699
+				C16.536,16.922,17.023,16.399,17.567,15.938z"/>
+            <path d="M29.66,15.6l3.799-6.393c0.374,0.107,0.762,0.184,1.169,0.184c2.347,0,4.244-1.898,4.244-4.241
+				c0-2.342-1.897-4.239-4.244-4.239c-2.343,0-4.239,1.896-4.239,4.239c0,1.163,0.469,2.214,1.227,2.981l-3.787,6.375
+				C28.48,14.801,29.094,15.169,29.66,15.6z"/>
+            <path d="M42.762,20.952c-1.824,0-3.369,1.159-3.968,2.775l-5.278-0.521c0,0.04,0.006,0.078,0.006,0.117
+				c0,0.688-0.076,1.36-0.213,2.009l5.276,0.521c0.319,2.024,2.062,3.576,4.177,3.576c2.342,0,4.238-1.896,4.238-4.238
+				C47,22.85,45.104,20.952,42.762,20.952z"/>
+            <path d="M28.197,37.624l-1.18-5.156c-0.666,0.232-1.359,0.398-2.082,0.481l1.182,5.157c-1.355,0.709-2.29,2.11-2.29,3.746
+				c0,2.342,1.896,4.237,4.243,4.237c2.342,0,4.238-1.896,4.238-4.237C32.311,39.553,30.479,37.692,28.197,37.624z"/>
+            <path d="M14.357,25.37l-6.57,2.201c-0.758-1.158-2.063-1.926-3.548-1.926C1.896,25.645,0,27.542,0,29.884
+				c0,2.345,1.896,4.242,4.239,4.242c2.341,0,4.242-1.897,4.242-4.242c0-0.098-0.021-0.188-0.029-0.284l6.591-2.207
+				C14.746,26.752,14.51,26.077,14.357,25.37z"/>
+            <circle cx="23.83" cy="23.323" r="7.271"/>
+		</g>
+	</g>
+</g>
+</svg>
+        </div>
+    </button>
+
+    <div class="ml-auto mr-auto">
+        <a class="navbar-brand" routerLink="/">
+            <img alt="1inch.exchange" height="70" src="assets/logo.svg">
+            <span class="d-none d-md-inline">
+               gDAI
+            </span>
+        </a>
+    </div>
+
+    <div class="switch switch-md theme-switcher my-1 my-sm-0">
+        <input (ngModelChange)="themeService.toggleMode()" [ngModel]="themeService.isDarkMode" class="switch"
+               id="dark-mode"
+               type="checkbox">
+        <label for="dark-mode">
+            <span *ngIf="themeService.isDarkMode" class="d-none d-md-block">Dark</span>
+            <span *ngIf="!themeService.isDarkMode" class="d-none d-md-block">Light</span>
+        </label>
+    </div>
+</nav>
+
+<app-loading-spinner *ngIf="loading"></app-loading-spinner>
+<router-outlet *ngIf="!loading"></router-outlet>
+
+<div class="text-center mt-2" style="opacity: 0.3;">
+    <h5>ENS: <a href="https://etherscan.io/address/{{contractAddress}}"
+                target="_blank">{{(ensDomain ? ensDomain : 'is updating...')}}</a></h5>
+    <h6 style="font-weight: 100; font-size: 0.9rem;">BUIDL <a href="https://eth.boston" targaet="_blank">@ETHBoston</a> 2019 by</h6>
+    <img alt="Crypto Maniacs" src="assets/cryptomaniacs.png" width="200">
+</div>
+
+<ng-template #connectTemplate>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">
+            Wallet connect
+        </h4>
+        <button (click)="modalRef.hide()" aria-label="Close" class="close pull-right" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <div *ngIf="!connectInProgress">
+
+            <div class="text-center border-bottom pb-3" *ngIf="web3Service.txProvider && web3Service.txProviderName">
+                <h5 class="spread-title pb-3">Connected wallet:</h5>
+                <button class="btn btn-default btn-wallet-connect btn-wallet-connected" style="cursor: default;">
+                    <div *ngIf="web3Service.txProviderName === 'metamask'">
+                        <span *ngIf="isMetaMask">
+                            <img height="64" src="assets/metamask-fox.svg"><br>
+                            Metamask
+                        </span>
+                        <span *ngIf="isTrustWallet">
+                            <img height="64" src="assets/trust-wallet.png"><br>
+                            Trust
+                        </span>
+                        <span *ngIf="!isMetaMask && !isTrustWallet">
+                            <img height="64" src="assets/ethereum-white.png"><br>
+                            Web3
+                        </span>
+                    </div>
+
+                    <div *ngIf="web3Service.txProviderName === 'torus'">
+                        <img height="64" src="assets/torus.png"><br>
+                        Torus
+                    </div>
+                    <div *ngIf="web3Service.txProviderName === 'fortmatic'">
+                        <img height="64" src="assets/fortmatic.png"><br>
+                        Fortmatic
+                    </div>
+                    <div *ngIf="web3Service.txProviderName === 'squarelink'">
+                        <img height="64" src="assets/squarelink.png"><br>
+                        Squarelink
+                    </div>
+                    <div *ngIf="web3Service.txProviderName === 'portis'">
+                        <img height="64" src="assets/portis.png"><br>
+                        Portis
+                    </div>
+                    <div *ngIf="web3Service.txProviderName === 'wallet-connect'">
+                        <img height="64" src="assets/wallet-connect.png"><br>
+                        Wallet Connect
+                    </div>
+                    <div *ngIf="web3Service.txProviderName === 'bitski'">
+                        <img style="max-width: 64px; max-height: 64px;" src="assets/bitski.png"><br>
+                        Bitski
+                    </div>
+                    <div *ngIf="web3Service.txProviderName === 'ledger'">
+                        <img style="max-width: 64px; max-height: 64px;" src="assets/ledger.png"><br>
+                        Ledger
+                    </div>
+                </button>
+
+                <br>
+
+                <button (click)="disconnect()" class="btn btn-link btn-disconnect">
+                    Disconnect
+                </button>
+
+                <div *ngIf="web3Service.walletAddress" class="input-group">
+                    <div class="input-group-prepend">
+                        <button (click)="copyToClipboard(web3Service.walletAddress)" class="btn btn-info" type="button">
+                            <fa-icon [icon]="copyIcon"></fa-icon>
+                        </button>
+                    </div>
+                    <input (click)="copyToClipboard(web3Service.walletAddress)" [value]="web3Service.walletAddress"
+                           class="form-control" readonly
+                           style="cursor: pointer;" type="text" value="">
+                </div>
+            </div>
+
+            <h5 class="spread-title text-center pt-3">Choose your wallet:</h5>
+            <div
+                class="d-flex flex-wrap flex-row justify-content-center bd-highlight text-center distributed-dex-list pt-2 pb-2 mb-1">
+
+                <div *ngIf="web3Service.txProviderName !== 'metamask'" class="p-2 bd-highlight">
+
+                    <button (click)="connect('metamask')" class="btn btn-default btn-wallet-connect">
+
+                        <span *ngIf="isMetaMask">
+                            <img height="64" src="assets/metamask-fox.svg"><br>
+                            Metamask
+                        </span>
+                        <span *ngIf="isTrustWallet">
+                            <img height="64" src="assets/trust-wallet.png"><br>
+                            Trust
+                        </span>
+                        <span *ngIf="!isMetaMask && !isTrustWallet">
+                            <img height="64" src="assets/ethereum.png"><br>
+                            Web3
+                        </span>
+                    </button>
+
+                </div>
+
+                <div *ngIf="web3Service.txProviderName !== 'torus'" class="p-2 bd-highlight">
+
+                    <button (click)="connect('torus')" class="btn btn-default btn-wallet-connect">
+                        <img height="64" src="assets/torus.png"><br>
+                        Torus
+                    </button>
+                </div>
+
+                <div *ngIf="web3Service.txProviderName !== 'fortmatic'" class="p-2 bd-highlight">
+
+                    <button (click)="connect('fortmatic')" class="btn btn-default btn-wallet-connect">
+                        <img height="64" src="assets/fortmatic.png"><br>
+                        Fortmatic
+                    </button>
+
+                </div>
+
+                <div *ngIf="web3Service.txProviderName !== 'squarelink'" class="p-2 bd-highlight">
+
+                    <button (click)="connect('squarelink')" class="btn btn-default btn-wallet-connect">
+                        <img height="64" src="assets/squarelink.png"><br>
+                        Squarelink
+                    </button>
+
+                </div>
+
+                <div class="p-2 bd-highlight" *ngIf="web3Service.txProviderName !== 'portis'">
+
+                    <button (click)="connect('portis')" class="btn btn-default btn-wallet-connect">
+                        <img height="64" src="assets/portis.png"><br>
+                        Portis
+                    </button>
+
+                </div>
+
+                <div class="p-2 bd-highlight" *ngIf="web3Service.txProviderName !== 'wallet-connect'">
+
+                    <button (click)="connect('wallet-connect')" class="btn btn-default btn-wallet-connect">
+                        <img height="64" src="assets/wallet-connect.png"><br>
+                        Wallet Connect
+                    </button>
+
+                </div>
+
+                <div class="p-2 bd-highlight" *ngIf="web3Service.txProviderName !== 'bitski'">
+
+                    <button (click)="connect('bitski')" class="btn btn-default btn-wallet-connect">
+                        <img style="max-width: 64px; max-height: 64px;" src="assets/bitski.png"><br>
+                        Bitski
+                    </button>
+
+                </div>
+
+                <div class="p-2 bd-highlight" *ngIf="web3Service.txProviderName !== 'ledger'">
+
+                    <button (click)="connect('ledger')" class="btn btn-default btn-wallet-connect">
+                        <img style="max-width: 64px; max-height: 64px;" src="assets/ledger.png" class="ledger-logo"><br>
+                        Ledger
+                    </button>
+
+                </div>
+            </div>
+
+
+        </div>
+        <div *ngIf="connectInProgress" class="text-center pb-4 pt-3">
+
+            <img src="assets/loading.svg" width="100">
+            <h6>
+                <span>
+                    Loading...
+                </span>
+            </h6>
+        </div>
+
+    </div>
+</ng-template>
+<app-notifications aria-live="polite" aria-atomic="true"></app-notifications>

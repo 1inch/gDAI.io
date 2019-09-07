@@ -1,0 +1,15 @@
+#not-found {
+  text-align: center;
+}
+
+#not-found,
+#not-found .row
+{
+  height: 100%;
+}
+
+#not-found .row div {
+  background: white;
+  padding: 2rem;
+  border-radius: 0.4rem;
+}
