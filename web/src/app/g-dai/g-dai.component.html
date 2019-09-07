@@ -54,7 +54,7 @@
         <div *ngIf="modalTxHash">
             <ngb-alert (close)="modalTxHash = true" class="mb-5" type="success">
                 Transaction was successfully send.<br> <a
-                [href]="'https://etherscan.io/tx/' + modalTxHash" target="_blank">{{modalTxHash}}</a>
+                [href]="'https://etherscan.io/tx/' + modalTxHash" target="_blank">See on etherscan.io</a>
             </ngb-alert>
         </div>
 
