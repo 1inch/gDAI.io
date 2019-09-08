@@ -124,9 +124,6 @@ export class GDaiComponent implements OnInit {
 
             const liveInterest = await this.gDaiService.getEarnedInterest();
 
-            console.log('liveInterest', liveInterest.toString());
-            console.log('currentInter', currentInterest.toString());
-
             if (
                 liveInterest.gt(currentInterest)
             ) {
