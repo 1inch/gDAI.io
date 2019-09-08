@@ -23,6 +23,7 @@ export class GDaiComponent implements OnInit {
     modalLoading = false;
 
     modalTxHash = null;
+    txHash = null;
 
     walletBalance = '0';
     earnedInterest = '0';
@@ -469,10 +470,10 @@ export class GDaiComponent implements OnInit {
                 this.tokenService.parseAsset(this.fromToken, this.sendAmount)
             );
 
-            this.modalTxHash = hash;
+            this.txHash = hash;
 
             setTimeout(() => {
-                this.modalTxHash = null;
+                this.txHash = null;
             }, 10000);
         } catch (e) {
 

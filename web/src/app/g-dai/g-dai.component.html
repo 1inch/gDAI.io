@@ -32,6 +32,13 @@
 
             <app-loading-spinner *ngIf="loading"></app-loading-spinner>
 
+            <div *ngIf="txHash">
+                <ngb-alert (close)="txHash = null" class="mb-5" type="success">
+                    Transaction was successfully send.<br> <a
+                    [href]="'https://etherscan.io/tx/' + txHash" target="_blank">{{txHash}}</a>
+                </ngb-alert>
+            </div>
+
             <div *ngIf="!loading" class="row">
 
                 <form (ngSubmit)="f.form.valid && send()" name="form" #f="ngForm" class="pt-4 ml-auto mr-auto col-12 col-md-6" novalidate>
@@ -94,7 +101,7 @@
         </div>
 
         <div *ngIf="modalTxHash">
-            <ngb-alert (close)="modalTxHash = true" class="mb-5" type="success">
+            <ngb-alert (close)="modalTxHash = null" class="mb-5" type="success">
                 Transaction was successfully send.<br> <a
                 [href]="'https://etherscan.io/tx/' + modalTxHash" target="_blank">See on etherscan.io</a>
             </ngb-alert>
@@ -186,7 +193,7 @@
         </div>
 
         <div *ngIf="modalTxHash">
-            <ngb-alert (close)="modalTxHash = true" class="mb-5" type="success">
+            <ngb-alert (close)="modalTxHash = null" class="mb-5" type="success">
                 Transaction was successfully send.<br> <a
                 [href]="'https://etherscan.io/tx/' + modalTxHash" target="_blank">See on etherscan.io</a>
             </ngb-alert>
