@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1567907270167,
+  "timestamp": 1567908830142,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -11,7 +11,7 @@
         "/0.7c81f2eab6e05c956bac.js",
         "/favicon.ico",
         "/index.html",
-        "/main.50cdad2833c15523663a.js",
+        "/main.9f53b110241d80aa1f73.js",
         "/manifest.webmanifest",
         "/polyfills-es5.eec443a230952a3c1470.js",
         "/polyfills.4f4279cb7976d50f3260.js",
@@ -121,8 +121,8 @@
     "/assets/trust-wallet.png": "7fcf5ba66868259c8ddb9526ff15999f62ec25c2",
     "/assets/wallet-connect.png": "405a77eb97c6d08b2f1a6a793e128a607ea2e881",
     "/favicon.ico": "9255b817b48d987376ab35bd10afaaaeeec80215",
-    "/index.html": "f7b6425b51eb59b2dbe409a981e2ce520eb64e1d",
-    "/main.50cdad2833c15523663a.js": "f51008444ec3e54d5a952985df7def9c19be24db",
+    "/index.html": "005f4d4ec0d540ae5a7f2568c8b966f918b6bb29",
+    "/main.9f53b110241d80aa1f73.js": "3d412722cb65a8fa9ffe7798236ef8798441bc97",
     "/manifest.webmanifest": "c92d7dc3616fe94626656601a4c1cf0a5e9fc359",
     "/polyfills-es5.eec443a230952a3c1470.js": "d1e83ba4cfbe8d31fc4229d4b758f5b1a84dc3c3",
     "/polyfills.4f4279cb7976d50f3260.js": "4aaea4e7beeac1208fc0ada5d19c67241090c282",
