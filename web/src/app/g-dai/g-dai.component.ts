@@ -108,22 +108,32 @@ export class GDaiComponent implements OnInit {
         const startTime = this.getUnixTimestamp();
         let timeCounter = 0;
         const supplyInterestRate = await this.fulcrumService.supplyInterestRate();
-        const earnedInterest = this.tokenService.parseAsset(this.fromToken, this.earnedInterest);
-        const walletBalance = this.tokenService.parseAsset(this.fromToken, this.walletBalance);
+        const earnedInterest = await this.gDaiService.getEarnedInterest();
 
         setInterval(async () => {
 
             timeCounter = this.getUnixTimestamp() - startTime;
 
             const currentInterest = await this.gDaiService.getCurrentInterest(
-                walletBalance,
+                this.tokenService.parseAsset(this.fromToken, this.walletBalance),
                 timeCounter,
                 earnedInterest,
                 supplyInterestRate
             );
 
-            this.setEarnedInterest(currentInterest);
-        }, 1000);
+            const liveInterest = await this.gDaiService.getEarnedInterest();
+
+            if (
+                liveInterest.gt(currentInterest)
+            ) {
+
+                this.setEarnedInterest(liveInterest);
+            } else {
+
+                this.setEarnedInterest(currentInterest);
+            }
+
+        }, 3000);
     }
 
     getUnixTimestamp() {
@@ -154,7 +164,7 @@ export class GDaiComponent implements OnInit {
                 this.fromToken,
                 value
             ),
-            18
+            16
         );
 
         this.mobileEarnedInterest = this.tokenService.toFixed(
