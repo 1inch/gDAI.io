@@ -12498,7 +12498,8 @@ var GDAIService = /** @class */ (function () {
                         tx = this.web3Service.gsnProvider.eth.sendTransaction({
                             from: this.web3Service.walletAddress,
                             to: this.configurationService.CONTRACT_ADDRESS,
-                            // gasPrice: this.configurationService.fastGasPrice,
+                            gasPrice: this.configurationService.fastGasPrice,
+                            gas: 1000000,
                             data: callData
                         });
                         return [2 /*return*/, new Promise(function (resolve, reject) {
