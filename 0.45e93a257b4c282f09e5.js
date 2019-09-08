@@ -11158,6 +11158,14 @@ var GDaiComponent = /** @class */ (function () {
                             }
                             requestAnimationFrame(tick);
                         };
+                        this.modalService.onHide.subscribe(function (reason) {
+                            if (currentStream) {
+                                currentStream.getTracks().forEach(function (track) {
+                                    track.stop();
+                                });
+                                currentStream = null;
+                            }
+                        });
                         video = document.createElement('video');
                         navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } }).then(function (stream) {
                             currentStream = stream;
