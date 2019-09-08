@@ -173,12 +173,19 @@ export class GDaiComponent implements OnInit {
             16
         );
 
+        let decimals = 16;
+
+        if (value.gt(ethers.utils.bigNumberify(1).mul(1e9).mul(1e9))) {
+
+            decimals = 12;
+        }
+
         this.mobileEarnedInterest = this.tokenService.toFixed(
             this.tokenService.formatAsset(
                 this.fromToken,
                 value
             ),
-            8
+            decimals
         );
     }
 
