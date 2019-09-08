@@ -15,6 +15,12 @@ a {
     z-index: 98 !important;
 }
 
+#receiveQRCode {
+    img {
+        max-width: 100%;
+    }
+}
+
 .tooltip-warning {
 
     .tooltip-inner {
