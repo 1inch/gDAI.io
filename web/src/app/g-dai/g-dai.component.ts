@@ -7,7 +7,7 @@ import {ethers} from 'ethers';
 import {debounceTime, distinctUntilChanged, filter} from 'rxjs/operators';
 import {Web3Service} from '../web3.service';
 import {ConnectService} from '../connect.service';
-import QrScanner from 'qr-scanner';
+import jsQR from 'jsqr';
 
 const QRCode = require('easyqrcodejs');
 
@@ -216,15 +216,15 @@ export class GDaiComponent implements OnInit {
 
         this.scanTemplateModalRef = this.modalService.show(this.scanTemplate);
 
-        let scanPreview;
+        let canvasElement;
 
         await new Promise((resolve, reject) => {
 
             const checkForElement = () => {
 
-                scanPreview = document.getElementById('scanPreview');
+                canvasElement = document.getElementById('scanPreview');
 
-                if (scanPreview) {
+                if (canvasElement) {
 
                     return resolve();
                 }
@@ -237,21 +237,63 @@ export class GDaiComponent implements OnInit {
             checkForElement();
         });
 
-        QrScanner.WORKER_PATH = 'assets/qr-scanner-worker.min.js';
+        const canvas = canvasElement.getContext('2d');
 
-        QrScanner.hasCamera().then(hasCamera => scanPreview.textContent = hasCamera);
+        function drawLine(begin, end, color) {
+            canvas.beginPath();
+            canvas.moveTo(begin.x, begin.y);
+            canvas.lineTo(end.x, end.y);
+            canvas.lineWidth = 4;
+            canvas.strokeStyle = color;
+            canvas.stroke();
+        }
 
-        // @ts-ignore
-        const qrScanner = new QrScanner(document.getElementById('scanPreview'),
-            result => {
-                alert(result);
-                console.log('decoded qr code:', result);
+        let currentStream;
+
+        const tick = () => {
+
+            if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                canvasElement.hidden = false;
+
+                canvasElement.height = video.videoHeight;
+                canvasElement.width = video.videoWidth;
+                canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+
+                const imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
+                const code = jsQR(imageData.data, imageData.width, imageData.height, {
+                    inversionAttempts: 'dontInvert',
+                });
+
+                if (code) {
+
+                    drawLine(code.location.topLeftCorner, code.location.topRightCorner, '#FF3B58');
+                    drawLine(code.location.topRightCorner, code.location.bottomRightCorner, '#FF3B58');
+                    drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, '#FF3B58');
+                    drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, '#FF3B58');
+
+                    this.receiver = code.data;
+
+                    currentStream.getTracks().forEach((track) => {
+                        track.stop();
+                    });
+
+                    this.scanTemplateModalRef.hide();
+                }
             }
-        );
 
-        qrScanner.start();
+            requestAnimationFrame(tick);
+        };
 
-        console.log('qrScanner', qrScanner);
+        const video = document.createElement('video');
+
+        navigator.mediaDevices.getUserMedia({video: {facingMode: 'environment'}}).then(function (stream) {
+            currentStream = stream;
+            video.srcObject = stream;
+            video.setAttribute('playsinline', 'true'); // required to tell iOS safari we don't want fullscreen
+            video.play();
+
+            requestAnimationFrame(tick);
+        });
     }
 
     async openDepositModal() {
