@@ -89,6 +89,14 @@ a:hover {
   box-shadow: none !important;
   color: #ddd !important;
 }
+.dark-mode .dropdown button:-webkit-autofill, .dark-mode .dropdown button:-webkit-autofill:hover, .dark-mode .dropdown button:-webkit-autofill:focus,
+.dark-mode .form-control:-webkit-autofill,
+.dark-mode .form-control:-webkit-autofill:hover,
+.dark-mode .form-control:-webkit-autofill:focus {
+  -webkit-text-fill-color: #ddd;
+  -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
 .dark-mode .dropdown-menu,
 .dark-mode .list-group-item {
   color: #ddd !important;

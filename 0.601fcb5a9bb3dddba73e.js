@@ -920,7 +920,7 @@ var GDaiComponent = /** @class */ (function () {
                         return [4 /*yield*/, this.gDaiService.getEarnedInterest()];
                     case 1:
                         _a.earnedInterest = _c.apply(_b, [_e.apply(_d, _f.concat([_o.sent()])),
-                            16]);
+                            14]);
                         _g = this;
                         _j = (_h = this.tokenService).toFixed;
                         _l = (_k = this.tokenService).formatAsset;

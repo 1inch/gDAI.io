@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1567912924959,
+  "timestamp": 1567913463146,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -8,15 +8,15 @@
       "installMode": "prefetch",
       "updateMode": "prefetch",
       "urls": [
-        "/0.9a7cd862521b1dbbc6a2.js",
+        "/0.601fcb5a9bb3dddba73e.js",
         "/favicon.ico",
         "/index.html",
         "/main.09f0259fd810cadb2dc3.js",
         "/manifest.webmanifest",
         "/polyfills-es5.eec443a230952a3c1470.js",
         "/polyfills.4f4279cb7976d50f3260.js",
-        "/runtime.4a0a7f8ca4607f0ffa64.js",
-        "/styles.b348c145b429448e0ef0.css"
+        "/runtime.b56e885db6c08d6edb5e.js",
+        "/styles.1028e6e0e882c67df975.css"
       ],
       "patterns": []
     },
@@ -75,7 +75,7 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/0.9a7cd862521b1dbbc6a2.js": "57a24e17aa2cc5be749e87bbfad64501349428de",
+    "/0.601fcb5a9bb3dddba73e.js": "758718635cf9c0db316a86ec4edfe4f1c0adc8ca",
     "/assets/bitski.png": "dd2f392552aebcd2d25b91c0d18d067b149baa25",
     "/assets/cryptomaniacs.png": "550cf4c6ce74f53a3d5f975f3a0b033bda6de8f8",
     "/assets/ethereum.png": "18cde2f547f56bb9609823892395f971e02896be",
@@ -121,13 +121,13 @@
     "/assets/trust-wallet.png": "7fcf5ba66868259c8ddb9526ff15999f62ec25c2",
     "/assets/wallet-connect.png": "405a77eb97c6d08b2f1a6a793e128a607ea2e881",
     "/favicon.ico": "9255b817b48d987376ab35bd10afaaaeeec80215",
-    "/index.html": "8a3c6948bc69a4a6a1dfe04665fded61447b5ec2",
+    "/index.html": "5aa529cf83c8505ef07e5ecd82f33cb72f5a64c7",
     "/main.09f0259fd810cadb2dc3.js": "7004eaa7feaf0f378d5208cabac7d57d1d7a37a2",
     "/manifest.webmanifest": "c92d7dc3616fe94626656601a4c1cf0a5e9fc359",
     "/polyfills-es5.eec443a230952a3c1470.js": "d1e83ba4cfbe8d31fc4229d4b758f5b1a84dc3c3",
     "/polyfills.4f4279cb7976d50f3260.js": "4aaea4e7beeac1208fc0ada5d19c67241090c282",
-    "/runtime.4a0a7f8ca4607f0ffa64.js": "1f351affe0eeb01995b0bc6741435a853dece7bd",
-    "/styles.b348c145b429448e0ef0.css": "0aab718dc28c55a3994a447ccd4f26edd183966d"
+    "/runtime.b56e885db6c08d6edb5e.js": "8996750e0cbe5f889b540d3c3ae5e8f5ffc2aa9d",
+    "/styles.1028e6e0e882c67df975.css": "f408a5a02402b90d9578e6aa58927b24ca7c192e"
   },
   "navigationUrls": [
     {
