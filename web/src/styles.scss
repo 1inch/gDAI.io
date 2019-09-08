@@ -21,6 +21,10 @@ a {
     }
 }
 
+#scanPreview {
+    max-width: 100%;
+}
+
 .tooltip-warning {
 
     .tooltip-inner {
@@ -74,8 +78,18 @@ a {
         background: #5b5b5b !important;
     }
 
+    .input-group-text,
     .btn-wallet-connected {
         background: #9933CC !important;
+    }
+
+    .input-group-text {
+        border: 0;
+        cursor: pointer;
+
+        img {
+            filter: invert(1);
+        }
     }
 
     .btn-wallet-connected:hover {

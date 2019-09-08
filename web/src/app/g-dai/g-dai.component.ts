@@ -7,6 +7,7 @@ import {ethers} from 'ethers';
 import {debounceTime, distinctUntilChanged, filter} from 'rxjs/operators';
 import {Web3Service} from '../web3.service';
 import {ConnectService} from '../connect.service';
+import QrScanner from 'qr-scanner';
 
 const QRCode = require('easyqrcodejs');
 
@@ -31,6 +32,7 @@ export class GDaiComponent implements OnInit {
     depositTemplateModalRef: BsModalRef;
     withdrawTemplateModalRef: BsModalRef;
     receiveTemplateModalRef: BsModalRef;
+    scanTemplateModalRef: BsModalRef;
 
     fromTokenAmountControl = new FormControl('');
     withdrawAmountControl = new FormControl('');
@@ -50,6 +52,9 @@ export class GDaiComponent implements OnInit {
 
     @ViewChild('receiveTemplate', {static: false})
     receiveTemplate: TemplateRef<any>;
+
+    @ViewChild('scanTemplate', {static: false})
+    scanTemplate: TemplateRef<any>;
 
     constructor(
         public gDaiService: GDAIService,
@@ -207,6 +212,48 @@ export class GDaiComponent implements OnInit {
         this.withdrawTemplateModalRef = this.modalService.show(this.withdrawTemplate);
     }
 
+    async openScanModal() {
+
+        this.scanTemplateModalRef = this.modalService.show(this.scanTemplate);
+
+        let scanPreview;
+
+        await new Promise((resolve, reject) => {
+
+            const checkForElement = () => {
+
+                scanPreview = document.getElementById('scanPreview');
+
+                if (scanPreview) {
+
+                    return resolve();
+                }
+
+                setTimeout(() => {
+                    checkForElement();
+                }, 100);
+            };
+
+            checkForElement();
+        });
+
+        QrScanner.WORKER_PATH = 'assets/qr-scanner-worker.min.js';
+
+        QrScanner.hasCamera().then(hasCamera => scanPreview.textContent = hasCamera);
+
+        // @ts-ignore
+        const qrScanner = new QrScanner(document.getElementById('scanPreview'),
+            result => {
+                alert(result);
+                console.log('decoded qr code:', result);
+            }
+        );
+
+        qrScanner.start();
+
+        console.log('qrScanner', qrScanner);
+    }
+
     async openDepositModal() {
 
         this.loadTokenBalance();
@@ -221,8 +268,6 @@ export class GDaiComponent implements OnInit {
 
             const checkForElement = () => {
 
-                console.log('this.receiveQRCode', document.getElementById('receiveQRCode'));
-
                 if (document.getElementById('receiveQRCode')) {
 
                     return resolve();
@@ -236,7 +281,7 @@ export class GDaiComponent implements OnInit {
             checkForElement();
         });
 
-        const qrcode = new QRCode(
+        new QRCode(
             document.getElementById('receiveQRCode'), {
                 text: this.web3Service.walletAddress,
                 logo: 'assets/logo@2x.png',
@@ -249,8 +294,6 @@ export class GDaiComponent implements OnInit {
                 logoBackgroundTransparent: false
 
             });
-
-        console.log('qrcode', qrcode);
     }
 
     async deposit() {
