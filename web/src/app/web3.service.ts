@@ -15,8 +15,6 @@ import {Subject} from 'rxjs';
 import {Bitski} from 'bitski';
 import {ethers} from 'ethers';
 
-const {generate} = require('ethereumjs-wallet');
-
 const {GSNProvider} = require('@openzeppelin/gsn-provider');
 
 declare let require: any;
@@ -273,7 +271,7 @@ export class Web3Service {
             const sqlk = new Squarelink('70afd2513e1cf55d3435');
 
             this.txProvider = new Web3(
-                sqlk.getProvider()
+                await sqlk.getProvider()
             );
 
             await this.txProvider.eth.getAccounts();
@@ -331,7 +329,8 @@ export class Web3Service {
         try {
 
             const walletConnectProvider = new WalletConnectProvider({
-                bridge: 'https://bridge.walletconnect.org'
+                bridge: 'https://bridge.walletconnect.org',
+                infuraId: this.configurationService.INFURA_KEY
             });
 
             this.txProvider = new Web3(

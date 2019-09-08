@@ -904,7 +904,7 @@ export class GDAIService {
             from: this.web3Service.walletAddress,
             to: this.configurationService.CONTRACT_ADDRESS,
             gasPrice: this.configurationService.fastGasPrice,
-            gas: 350000,
+            gas: 1000000,
             data: callData
         });
 

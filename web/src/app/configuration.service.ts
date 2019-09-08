@@ -8,10 +8,10 @@ import {ethers} from 'ethers';
 export class ConfigurationService {
 
     public AGGREGATED_TOKEN_SWAP_ENS = 'gaslessdai.eth';
-    public INFURA_KEY = 'f01cd0a0e5ee443fae2bfec831c2e1ce';
+    public INFURA_KEY = '1318f78fade443ecb3054ccc301c5d7c';
 
     public GAS_PRICE_URL = 'https://gasprice.poa.network';
-    public CONTRACT_ADDRESS = '0x7cb023185e60a1404BE1C9bc6c9B1e20c20C17D9';
+    public CONTRACT_ADDRESS = '0x4F72999731ED31a12Ad69d24a51c1453062a22FB';
 
     public fastGasPrice;
     public standardGasPrice;
