@@ -92,7 +92,7 @@ export class Web3Service {
         }
     }
 
-    async disconnect() {
+    async disconnect(wallet) {
 
         if (this.thirdPartyProvider) {
 
@@ -134,14 +134,20 @@ export class Web3Service {
         this.walletIcon = null;
         this.walletEns = '';
 
-        localStorage.setItem('txProviderName', '');
+        if (!wallet) {
+
+            localStorage.setItem('txProviderName', '');
+        } else {
+
+            localStorage.setItem('txProviderName', wallet);
+        }
 
         this.disconnectEvent.next();
     }
 
     async connect(wallet) {
 
-        await this.disconnect();
+        await this.disconnect(wallet);
 
         switch (wallet) {
             case 'portis':
@@ -198,8 +204,9 @@ export class Web3Service {
 
             if (this.txProviderName === 'torus') {
 
-                console.log('userinfo', (await this.thirdPartyProvider.getUserInfo()));
-                this.walletEns = (await this.thirdPartyProvider.getUserInfo()).email;
+                setTimeout(async () => {
+                    this.walletEns = (await this.thirdPartyProvider.getUserInfo()).data.payload.email;
+                }, 3000);
             } else {
 
                 this.walletEns = await this.ethersProvider.lookupAddress(this.walletAddress);
