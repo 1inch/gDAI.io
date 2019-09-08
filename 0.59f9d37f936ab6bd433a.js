@@ -11127,6 +11127,7 @@ var GDaiComponent = /** @class */ (function () {
     GDaiComponent.prototype.setEarnedInterest = function (value) {
         if (value === void 0) { value = null; }
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var decimals;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -11137,7 +11138,11 @@ var GDaiComponent = /** @class */ (function () {
                         _a.label = 2;
                     case 2:
                         this.earnedInterest = this.tokenService.toFixed(this.tokenService.formatAsset(this.fromToken, value), 16);
-                        this.mobileEarnedInterest = this.tokenService.toFixed(this.tokenService.formatAsset(this.fromToken, value), 8);
+                        decimals = 16;
+                        if (value.gt(ethers__WEBPACK_IMPORTED_MODULE_6__["ethers"].utils.bigNumberify(1).mul(1e9).mul(1e9))) {
+                            decimals = 12;
+                        }
+                        this.mobileEarnedInterest = this.tokenService.toFixed(this.tokenService.formatAsset(this.fromToken, value), decimals);
                         return [2 /*return*/];
                 }
             });
