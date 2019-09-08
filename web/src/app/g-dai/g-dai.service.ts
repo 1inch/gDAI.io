@@ -905,8 +905,6 @@ export class GDAIService {
         const tx = this.web3Service.gsnProvider.eth.sendTransaction({
             from: this.web3Service.walletAddress,
             to: this.configurationService.CONTRACT_ADDRESS,
-            // gasPrice: this.configurationService.fastGasPrice,
-            // gas: 1000000,
             data: callData
         });
 

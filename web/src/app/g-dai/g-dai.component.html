@@ -73,7 +73,7 @@
                                 <button class="btn btn-info btn-lg" type="submit" [disabled]="!f.form.valid || !this.web3Service.walletAddress || this.walletBalance == '0'">
                                     Send
                                 </button>
-                                <button class="btn btn-secondary btn-lg ml-2" [disabled]="!this.web3Service.walletAddress" (click)="openReceiveModal()">
+                                <button type="button" class="btn btn-secondary btn-lg ml-2" [disabled]="!this.web3Service.walletAddress" (click)="openReceiveModal()">
                                     Receive
                                 </button>
                             </div>

@@ -462,6 +462,7 @@ export class GDaiComponent implements OnInit {
     async send() {
 
         this.loading = true;
+        this.txHash = null;
 
         try {
 
@@ -471,10 +472,6 @@ export class GDaiComponent implements OnInit {
             );
 
             this.txHash = hash;
-
-            setTimeout(() => {
-                this.txHash = null;
-            }, 10000);
         } catch (e) {
 
             alert(e);

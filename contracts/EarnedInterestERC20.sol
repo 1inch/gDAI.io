@@ -8,31 +8,32 @@ contract EarnedInterestERC20 is ERC20 {
     using SafeMath for uint256;
 
     IFulcrum private fulcrum = IFulcrum(0x14094949152EDDBFcd073717200DA82fEd8dC960);
-    mapping(address => uint256) private priceOf;
+    mapping(address => int256) public priceOf;
 
     function earnedInterest(address user) public view returns (uint256) {
-
-        if (priceOf[user] == 0) {
-
-            return 0;
+        if (balanceOf(user) == 0) {
+            return uint256(priceOf[user]);
         }
-
-        if (balanceOf(user) < 1e18) {
-
-            return priceOf[user];
-        }
-
-        return balanceOf(user).mul(fulcrum.tokenPrice().sub(priceOf[user])).div(1e18);
+        return balanceOf(user) * uint256(int256(fulcrum.tokenPrice()) - priceOf[user]) / 1e18;
     }
 
-    function _setEarnedInteres(address user, uint256 interest) internal {
-
-        if (balanceOf(user) < 1e18) {
-            priceOf[user] = interest;
+    function _setEarnedInteres(address user, uint256 earned) internal {
+        if (balanceOf(user) == 0) {
+            priceOf[user] = int256(earned);
+            return;
         }
+        priceOf[user] = int256(fulcrum.tokenPrice()) - int256(earned * 1e18 / balanceOf(user));
+    }
 
-        priceOf[user] = fulcrum.tokenPrice().sub(
-            interest.mul(1e18).div(balanceOf(user))
-        );
+    function _transferEarnedInterestFirst(address from, address to, uint256 amount) internal {
+        uint256 earned = earnedInterest(from);
+
+        if (amount < earned) {
+            _setEarnedInteres(from, earned.sub(amount));
+        } else {
+            _setEarnedInteres(from, 0);
+            _burn(from, amount.sub(earned));
+            _mint(to, amount);
+        }
     }
 }
