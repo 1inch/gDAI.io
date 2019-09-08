@@ -20,4 +20,4 @@ Now i know how to work with gas station network and Fulcrum.
 Hope ETHGlobal would use it on the hackathons for paying for a beer or food.
 
 ## Try it out
-https://gdai.io
+https://gdai.io 

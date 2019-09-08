@@ -10351,10 +10351,10 @@ squarelink-provider-engine@^15.0.5:
     xhr "^2.2.0"
     xtend "^4.0.1"
 
-squarelink@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/squarelink/-/squarelink-1.0.8.tgz#260ceeb0559a20854498d97a1b835e8f480e4f9a"
-  integrity sha512-CfYyZxc8GkyKxIjbgPxGwKMCxERUqoJ1nifRg8oR7yT32zWhhWL8KE0SbUF0qavw3Z+sHhI6LLq07sD4KhDgfQ==
+squarelink@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/squarelink/-/squarelink-1.0.9.tgz#d7f767aa38173ea8676643b531680b2e70223938"
+  integrity sha512-6VWKwo8cbECuI+wljKivRfgjXrLbS4maLHlKHDxTd63Q64tg5nUMmXLwwfBcDbltuCptgQUjSfWHt2/igBD/Nw==
   dependencies:
     babel-runtime "^6.26.0"
     bignumber.js "^9.0.0"
