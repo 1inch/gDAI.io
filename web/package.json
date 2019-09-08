@@ -39,7 +39,7 @@
         "bitski": "^0.10.1",
         "bootstrap": "^4.3.1",
         "bootswatch": "^4.3.1",
-        "buffer": "^5.4.0",
+        "buffer": "^5.4.2",
         "easyqrcodejs": "^3.2.0",
         "ethers": "^4.0.36",
         "fortmatic": "^0.8.2",
