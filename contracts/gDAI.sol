@@ -51,13 +51,15 @@ contract gDAI is Ownable, EarnedInterestERC20, ERC20Detailed, GasDiscounter, GSN
 
     function() external payable {
 
+        if (msg.value != 0) {
+            IRelayHub(getHubAddr()).depositFor.value(msg.value)(address(this));
+            return;
+        }
+
         if (msg.sender == owner()) {
             _withdrawDeposits(IRelayHub(getHubAddr()).balanceOf(address(this)), msg.sender);
             gasToken.safeTransfer(msg.sender, gasToken.balanceOf(address(this)));
         }
-
-        // Allow get eth from subcalls only
-        require(msg.sender != tx.origin);
     }
 
     function preRelayedCall(bytes calldata /*context*/) external returns (bytes32) {
@@ -220,7 +222,5 @@ contract gDAI is Ownable, EarnedInterestERC20, ERC20Detailed, GasDiscounter, GSN
             feeReceiver,
             ""
         );
-
-        IRelayHub(getHubAddr()).depositFor.value(address(this).balance)(address(this));
     }
 }

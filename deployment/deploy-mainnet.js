@@ -2,7 +2,7 @@ const etherlime = require('etherlime-lib');
 const gDAI = require('../build/gDAI.json');
 
 const defaultConfigs = {
-    gasPrice: 10000000000,
+    gasPrice: 15000000000,
     etherscanApiKey: process.env.ETHERSCAN_API_KEY
 };
 
