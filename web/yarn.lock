@@ -10323,7 +10323,7 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
-squarelink-provider-engine@^15.0.4:
+squarelink-provider-engine@^15.0.5:
   version "15.0.5"
   resolved "https://registry.yarnpkg.com/squarelink-provider-engine/-/squarelink-provider-engine-15.0.5.tgz#93a440c5daec517b1b494424d1c279f195cd781c"
   integrity sha512-rl9586BLpN/ldujibbMsCfq+lEyY/YMkmWqYcbmKs6VUvB56fsIG23HvVFl1mPRUu7XIq4dOt+V+4G6+GcKTtQ==
@@ -10351,13 +10351,14 @@ squarelink-provider-engine@^15.0.4:
     xhr "^2.2.0"
     xtend "^4.0.1"
 
-squarelink@^0.5.3:
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/squarelink/-/squarelink-0.5.3.tgz#afa2a0d5ee3e042c0ff94cf04f3ee2d4ff5215d5"
-  integrity sha512-RuqGnZ4j8E0x/lpSYQu2g1Ms3lO8ZMKDwgJNUhzyt5e1ODheY0AXXtyotCUqzgI1qeF12KYqE06crs03yUoHRQ==
+squarelink@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/squarelink/-/squarelink-1.0.8.tgz#260ceeb0559a20854498d97a1b835e8f480e4f9a"
+  integrity sha512-CfYyZxc8GkyKxIjbgPxGwKMCxERUqoJ1nifRg8oR7yT32zWhhWL8KE0SbUF0qavw3Z+sHhI6LLq07sD4KhDgfQ==
   dependencies:
     babel-runtime "^6.26.0"
-    squarelink-provider-engine "^15.0.4"
+    bignumber.js "^9.0.0"
+    squarelink-provider-engine "^15.0.5"
 
 sri-toolbox@^0.2.0:
   version "0.2.0"
