@@ -11083,8 +11083,11 @@ var GDaiComponent = /** @class */ (function () {
                                         return [4 /*yield*/, this.gDaiService.getEarnedInterest()];
                                     case 2:
                                         liveInterest = _a.sent();
+                                        console.log('liveInterest', liveInterest.toString());
+                                        console.log('currentInter', currentInterest.toString());
                                         if (liveInterest.gt(currentInterest)) {
                                             this.setEarnedInterest(liveInterest);
+                                            earnedInterest = liveInterest;
                                         }
                                         else {
                                             this.setEarnedInterest(currentInterest);
@@ -11094,7 +11097,7 @@ var GDaiComponent = /** @class */ (function () {
                                                 updateCounter();
                                                 return [2 /*return*/];
                                             });
-                                        }); }, 2000);
+                                        }); }, 1000);
                                         return [2 /*return*/];
                                 }
                             });
