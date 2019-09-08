@@ -11030,7 +11030,7 @@ var GDaiComponent = /** @class */ (function () {
     };
     GDaiComponent.prototype.ngOnInit = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var startTime, timeCounter, supplyInterestRate, earnedInterest, walletBalance;
+            var startTime, timeCounter, supplyInterestRate, earnedInterest;
             var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
@@ -11062,22 +11062,31 @@ var GDaiComponent = /** @class */ (function () {
                         return [4 /*yield*/, this.fulcrumService.supplyInterestRate()];
                     case 3:
                         supplyInterestRate = _a.sent();
-                        earnedInterest = this.tokenService.parseAsset(this.fromToken, this.earnedInterest);
-                        walletBalance = this.tokenService.parseAsset(this.fromToken, this.walletBalance);
+                        return [4 /*yield*/, this.gDaiService.getEarnedInterest()];
+                    case 4:
+                        earnedInterest = _a.sent();
                         setInterval(function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
-                            var currentInterest;
+                            var currentInterest, liveInterest;
                             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                                 switch (_a.label) {
                                     case 0:
                                         timeCounter = this.getUnixTimestamp() - startTime;
-                                        return [4 /*yield*/, this.gDaiService.getCurrentInterest(walletBalance, timeCounter, earnedInterest, supplyInterestRate)];
+                                        return [4 /*yield*/, this.gDaiService.getCurrentInterest(this.tokenService.parseAsset(this.fromToken, this.walletBalance), timeCounter, earnedInterest, supplyInterestRate)];
                                     case 1:
                                         currentInterest = _a.sent();
-                                        this.setEarnedInterest(currentInterest);
+                                        return [4 /*yield*/, this.gDaiService.getEarnedInterest()];
+                                    case 2:
+                                        liveInterest = _a.sent();
+                                        if (liveInterest.gt(currentInterest)) {
+                                            this.setEarnedInterest(liveInterest);
+                                        }
+                                        else {
+                                            this.setEarnedInterest(currentInterest);
+                                        }
                                         return [2 /*return*/];
                                 }
                             });
-                        }); }, 1000);
+                        }); }, 3000);
                         return [2 /*return*/];
                 }
             });
@@ -11117,7 +11126,7 @@ var GDaiComponent = /** @class */ (function () {
                         value = _a.sent();
                         _a.label = 2;
                     case 2:
-                        this.earnedInterest = this.tokenService.toFixed(this.tokenService.formatAsset(this.fromToken, value), 18);
+                        this.earnedInterest = this.tokenService.toFixed(this.tokenService.formatAsset(this.fromToken, value), 16);
                         this.mobileEarnedInterest = this.tokenService.toFixed(this.tokenService.formatAsset(this.fromToken, value), 8);
                         return [2 /*return*/];
                 }
