@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1567900771439,
+  "timestamp": 1567907270167,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -8,15 +8,15 @@
       "installMode": "prefetch",
       "updateMode": "prefetch",
       "urls": [
-        "/5.aefbcf87252405ac631d.js",
+        "/0.7c81f2eab6e05c956bac.js",
         "/favicon.ico",
         "/index.html",
-        "/main.7cc5e20c795f03ec176d.js",
+        "/main.50cdad2833c15523663a.js",
         "/manifest.webmanifest",
-        "/polyfills-es5.c5733f831476514616ca.js",
-        "/polyfills.e460cf0a9cb43cd8deed.js",
-        "/runtime.97385ac68574e175685b.js",
-        "/styles.f96f923ba3969dfd86dc.css"
+        "/polyfills-es5.eec443a230952a3c1470.js",
+        "/polyfills.4f4279cb7976d50f3260.js",
+        "/runtime.c40d691c257c60b9bca8.js",
+        "/styles.b348c145b429448e0ef0.css"
       ],
       "patterns": []
     },
@@ -75,7 +75,7 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/5.aefbcf87252405ac631d.js": "3e2ce8871c51edea2c019e0adee862bc36a8a174",
+    "/0.7c81f2eab6e05c956bac.js": "76cb5d745b5b03352a106d159c5813829a8a8c5b",
     "/assets/bitski.png": "dd2f392552aebcd2d25b91c0d18d067b149baa25",
     "/assets/cryptomaniacs.png": "550cf4c6ce74f53a3d5f975f3a0b033bda6de8f8",
     "/assets/ethereum.png": "18cde2f547f56bb9609823892395f971e02896be",
@@ -121,13 +121,13 @@
     "/assets/trust-wallet.png": "7fcf5ba66868259c8ddb9526ff15999f62ec25c2",
     "/assets/wallet-connect.png": "405a77eb97c6d08b2f1a6a793e128a607ea2e881",
     "/favicon.ico": "9255b817b48d987376ab35bd10afaaaeeec80215",
-    "/index.html": "1ebd52d895df199ad6515acf271f8a2a4d08e713",
-    "/main.7cc5e20c795f03ec176d.js": "d5bb88d6a6a88a10b9384851f52fb68ed84d812f",
+    "/index.html": "f7b6425b51eb59b2dbe409a981e2ce520eb64e1d",
+    "/main.50cdad2833c15523663a.js": "f51008444ec3e54d5a952985df7def9c19be24db",
     "/manifest.webmanifest": "c92d7dc3616fe94626656601a4c1cf0a5e9fc359",
-    "/polyfills-es5.c5733f831476514616ca.js": "f51d407f298ad182b412fa2497c451a7194b3b67",
-    "/polyfills.e460cf0a9cb43cd8deed.js": "4dd3431f93599f962c10b3f1697e52a59acf3b2a",
-    "/runtime.97385ac68574e175685b.js": "8f13e631d10a2feee2d8e4ff47b9fb62964254ad",
-    "/styles.f96f923ba3969dfd86dc.css": "098fc1b3e3e01f968a848f284862d2004819e280"
+    "/polyfills-es5.eec443a230952a3c1470.js": "d1e83ba4cfbe8d31fc4229d4b758f5b1a84dc3c3",
+    "/polyfills.4f4279cb7976d50f3260.js": "4aaea4e7beeac1208fc0ada5d19c67241090c282",
+    "/runtime.c40d691c257c60b9bca8.js": "253c64d2b2819423c34cd8abd5d8c75cf0665171",
+    "/styles.b348c145b429448e0ef0.css": "0aab718dc28c55a3994a447ccd4f26edd183966d"
   },
   "navigationUrls": [
     {
