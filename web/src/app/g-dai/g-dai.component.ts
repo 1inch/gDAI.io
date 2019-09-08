@@ -70,7 +70,7 @@ export class GDaiComponent implements OnInit {
     async refreshInfos() {
 
         this.setWalletBalance();
-        // this.setEarnedInterest();
+        this.setEarnedInterest();
         this.loadTokenBalance();
     }
 
@@ -139,7 +139,6 @@ export class GDaiComponent implements OnInit {
 
             }, 2000);
         };
-
         await updateCounter();
     }
 
@@ -155,7 +154,7 @@ export class GDaiComponent implements OnInit {
                 this.fromToken,
                 await this.gDaiService.getWalletBalance()
             ),
-            8
+            4
         );
     }
 
