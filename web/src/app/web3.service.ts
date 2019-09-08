@@ -12,10 +12,11 @@ import TransportU2F from '@ledgerhq/hw-transport-u2f';
 import createLedgerSubprovider from '@ledgerhq/web3-subprovider';
 
 import Web3 from 'web3';
-import GSNProvider from '@openzeppelin/gsn-provider';
 import {Subject} from 'rxjs';
 import {Bitski} from 'bitski';
 import {ethers} from 'ethers';
+
+const {GSNProvider} = require('@openzeppelin/gsn-provider');
 
 declare let require: any;
 declare let web3: any;
@@ -91,7 +92,7 @@ export class Web3Service {
             }
         }
 
-        const gsnProvider = new GSNProvider(this.rpcUrl);
+        const gsnProvider = new GSNProvider(webSocketProvider);
         this.gsnProvider = new Web3(gsnProvider);
     }
 

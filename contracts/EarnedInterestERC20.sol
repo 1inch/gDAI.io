@@ -17,7 +17,7 @@ contract EarnedInterestERC20 is ERC20 {
             return 0;
         }
 
-        if (balanceOf(user) == 0) {
+        if (balanceOf(user) < 1e18) {
 
             return priceOf[user];
         }
@@ -27,7 +27,7 @@ contract EarnedInterestERC20 is ERC20 {
 
     function _setEarnedInteres(address user, uint256 interest) internal {
 
-        if (balanceOf(user) == 0) {
+        if (balanceOf(user) < 1e18) {
             priceOf[user] = interest;
         }
 
