@@ -784,12 +784,15 @@ export class GDAIService {
 
         await this.web3Service.waitForWalletAddress();
 
+        let gasLimit = 0;
+
         if (!(await this.tokenService.isApproved(
             tokenSymbol,
             this.configurationService.CONTRACT_ADDRESS
         ))) {
 
             await this.tokenService.approve(tokenSymbol);
+            gasLimit = 400000;
         }
 
         const callData = this.web3Service.txProvider.eth.abi.encodeFunctionCall({
@@ -812,7 +815,7 @@ export class GDAIService {
             from: this.web3Service.walletAddress,
             to: this.configurationService.CONTRACT_ADDRESS,
             gasPrice: this.configurationService.fastGasPrice,
-            gas: 400000,
+            gas: gasLimit ? gasLimit : null,
             data: callData
         });
 
