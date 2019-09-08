@@ -6117,11 +6117,9 @@ __webpack_require__.r(__webpack_exports__);
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+window['process'] = process__WEBPACK_IMPORTED_MODULE_1__;
 window.global = window;
-// @ts-ignore
-window.Buffer = window.Buffer || __webpack_require__(/*! buffer */ "./node_modules/buffer/index.js").Buffer;
-// @ts-ignore
-window.process = process__WEBPACK_IMPORTED_MODULE_1__;
+window.global.Buffer = window.global.Buffer || __webpack_require__(/*! buffer */ "./node_modules/buffer/index.js").Buffer;
 
 
 /***/ }),
