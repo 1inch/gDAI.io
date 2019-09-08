@@ -112,7 +112,7 @@ export class GDaiComponent implements OnInit {
                 this.fromToken,
                 await this.gDaiService.getEarnedInterest()
             ),
-            16
+            14
         );
 
         this.mobileEarnedInterest = this.tokenService.toFixed(

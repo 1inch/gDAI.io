@@ -117,6 +117,15 @@ a {
         border-color: #232323 !important;
         box-shadow: none !important;;
         color: #ddd !important;
+
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus {
+
+            -webkit-text-fill-color: #ddd;
+            -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+            transition: background-color 5000s ease-in-out 0s;
+        }
     }
 
     .dropdown-menu,
