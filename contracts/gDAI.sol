@@ -45,8 +45,7 @@ contract gDAI is Ownable, EarnedInterestERC20, ERC20Detailed, GasDiscounter, GSN
 
     function() external payable {
 
-        // Allow get eth from subcalls only
-        require(msg.sender != tx.origin);
+        IRelayHub(getHubAddr()).depositFor.value(address(this).balance)(address(this));
     }
 
     function preRelayedCall(bytes calldata /*context*/) external returns (bytes32) {

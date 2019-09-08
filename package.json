@@ -8,7 +8,7 @@
         "sm:deploy:dev": "etherlime compile && etherlime deploy",
         "sm:flat": "etherlime flatten gDAI.sol",
         "verify": "truffle run verify",
-        "presm:deploy:prod": "yarn run sm:compile",
+        "presm:deploy:prod": "yarn run sm:compile --runs 200",
         "sm:deploy:prod": "etherlime deploy --compile false --file ./deployment/deploy-mainnet.js"
     },
     "author": "",
