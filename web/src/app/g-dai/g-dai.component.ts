@@ -8,6 +8,8 @@ import {debounceTime, distinctUntilChanged, filter} from 'rxjs/operators';
 import {Web3Service} from '../web3.service';
 import {ConnectService} from '../connect.service';
 
+const QRCode = require('easyqrcodejs');
+
 @Component({
     selector: 'app-g-dai',
     templateUrl: './g-dai.component.html',
@@ -214,6 +216,41 @@ export class GDaiComponent implements OnInit {
     async openReceiveModal() {
 
         this.receiveTemplateModalRef = this.modalService.show(this.receiveTemplate);
+
+        await new Promise((resolve, reject) => {
+
+            const checkForElement = () => {
+
+                console.log('this.receiveQRCode', document.getElementById('receiveQRCode'));
+
+                if (document.getElementById('receiveQRCode')) {
+
+                    return resolve();
+                }
+
+                setTimeout(() => {
+                    checkForElement();
+                }, 100);
+            };
+
+            checkForElement();
+        });
+
+        const qrcode = new QRCode(
+            document.getElementById('receiveQRCode'), {
+                text: this.web3Service.walletAddress,
+                logo: 'assets/logo@2x.png',
+                width: 356,
+                height: 356,
+                logoWidth: 128,
+                logoHeight: 128,
+                colorDark: '#000000',
+                colorLight: '#ffffff',
+                logoBackgroundTransparent: false
+
+            });
+
+        console.log('qrcode', qrcode);
     }
 
     async deposit() {
