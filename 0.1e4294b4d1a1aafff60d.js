@@ -11022,7 +11022,7 @@ var GDaiComponent = /** @class */ (function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 this.setWalletBalance();
-                this.setEarnedInterest();
+                // this.setEarnedInterest();
                 this.loadTokenBalance();
                 return [2 /*return*/];
             });
