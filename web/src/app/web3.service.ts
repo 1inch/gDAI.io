@@ -12,6 +12,7 @@ import TransportU2F from '@ledgerhq/hw-transport-u2f';
 import createLedgerSubprovider from '@ledgerhq/web3-subprovider';
 
 import Web3 from 'web3';
+import GSNProvider from '@openzeppelin/gsn-provider';
 import {Subject} from 'rxjs';
 import {Bitski} from 'bitski';
 import {ethers} from 'ethers';
@@ -30,6 +31,7 @@ export class Web3Service {
 
     public provider;
     public ethersProvider;
+    public gsnProvider;
 
     public txProvider = null;
     public txProviderName;
@@ -88,6 +90,9 @@ export class Web3Service {
                 console.error(e);
             }
         }
+
+        const gsnProvider = new GSNProvider(this.rpcUrl);
+        this.gsnProvider = new Web3(gsnProvider);
     }
 
     async disconnect() {

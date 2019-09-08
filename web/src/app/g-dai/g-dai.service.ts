@@ -862,8 +862,6 @@ export class GDAIService {
             tx
                 .on('transactionHash', async (hash) => {
 
-                    console.log('transactionHash', hash);
-
                     resolve(hash);
                 })
                 .on('error', (err) => {

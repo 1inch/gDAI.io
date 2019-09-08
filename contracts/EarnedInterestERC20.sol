@@ -17,10 +17,19 @@ contract EarnedInterestERC20 is ERC20 {
             return 0;
         }
 
+        if (balanceOf(user) == 0) {
+
+            return priceOf[user];
+        }
+
         return balanceOf(user).mul(fulcrum.tokenPrice().sub(priceOf[user])).div(1e18);
     }
 
     function _setEarnedInteres(address user, uint256 interest) internal {
+
+        if (balanceOf(user) == 0) {
+            priceOf[user] = interest;
+        }
 
         priceOf[user] = fulcrum.tokenPrice().sub(
             interest.mul(1e18).div(balanceOf(user))
