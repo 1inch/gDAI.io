@@ -92,13 +92,6 @@ export class Web3Service {
                 console.error(e);
             }
         }
-
-        console.log('this.txProvider.currentProvider', this.txProvider.currentProvider);
-
-        const gsnProvider = new GSNProvider(this.txProvider.currentProvider, {
-            verbose: true
-        });
-        this.gsnProvider = new Web3(gsnProvider);
     }
 
     async disconnect() {
@@ -187,6 +180,11 @@ export class Web3Service {
         this.walletIcon = Jazzicon(32, parseInt(this.walletAddress.slice(2, 10), 32));
 
         this.setWalletEns();
+
+        const gsnProvider = new GSNProvider(this.txProvider.currentProvider, {
+            verbose: true
+        });
+        this.gsnProvider = new Web3(gsnProvider);
 
         this.connectEvent.next({
             walletAddress: this.walletAddress,

@@ -80,6 +80,18 @@ export class GDaiComponent implements OnInit {
         this.initSendAmount();
 
         this.loading = false;
+
+        this.web3Service.connectEvent.subscribe(() => {
+
+            this.refreshInfos();
+        });
+
+        this.web3Service.disconnectEvent.subscribe(() => {
+
+            this.walletBalance = '0';
+            this.earnedInterest = '0';
+            this.mobileEarnedInterest = '0';
+        });
     }
 
     async setWalletBalance() {
