@@ -41,6 +41,6 @@ export class ConfigurationService {
 
         setTimeout(() => {
             this.getGasPrices();
-        }, 30000);
+        }, 12000);
     }
 }
