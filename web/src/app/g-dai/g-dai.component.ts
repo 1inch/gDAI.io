@@ -8,6 +8,7 @@ import {debounceTime, distinctUntilChanged, filter} from 'rxjs/operators';
 import {Web3Service} from '../web3.service';
 import {ConnectService} from '../connect.service';
 import jsQR from 'jsqr';
+import {FulcrumService} from './fulcrum.service';
 
 const QRCode = require('easyqrcodejs');
 
@@ -61,6 +62,7 @@ export class GDaiComponent implements OnInit {
         public tokenService: TokenService,
         public web3Service: Web3Service,
         public modalService: BsModalService,
+        public fulcrumService: FulcrumService,
         public connectService: ConnectService
     ) {
     }
@@ -68,11 +70,11 @@ export class GDaiComponent implements OnInit {
     async refreshInfos() {
 
         this.setWalletBalance();
-        this.setEarnedInterest();
+        // this.setEarnedInterest();
         this.loadTokenBalance();
     }
 
-    ngOnInit() {
+    async ngOnInit() {
 
         this.refreshInfos();
         setInterval(
@@ -99,6 +101,34 @@ export class GDaiComponent implements OnInit {
             this.earnedInterest = '0';
             this.mobileEarnedInterest = '0';
         });
+
+        await this.setWalletBalance();
+        await this.setEarnedInterest();
+
+        const startTime = this.getUnixTimestamp();
+        let timeCounter = 0;
+        const supplyInterestRate = await this.fulcrumService.supplyInterestRate();
+        const earnedInterest = this.tokenService.parseAsset(this.fromToken, this.earnedInterest);
+        const walletBalance = this.tokenService.parseAsset(this.fromToken, this.walletBalance);
+
+        setInterval(async () => {
+
+            timeCounter = this.getUnixTimestamp() - startTime;
+
+            const currentInterest = await this.gDaiService.getCurrentInterest(
+                walletBalance,
+                timeCounter,
+                earnedInterest,
+                supplyInterestRate
+            );
+
+            this.setEarnedInterest(currentInterest);
+        }, 1000);
+    }
+
+    getUnixTimestamp() {
+
+        return Math.round((new Date()).getTime() / 1000);
     }
 
     async setWalletBalance() {
@@ -112,20 +142,25 @@ export class GDaiComponent implements OnInit {
         );
     }
 
-    async setEarnedInterest() {
+    async setEarnedInterest(value = null) {
+
+        if (!value) {
+
+            value = await this.gDaiService.getEarnedInterest();
+        }
 
         this.earnedInterest = this.tokenService.toFixed(
             this.tokenService.formatAsset(
                 this.fromToken,
-                await this.gDaiService.getEarnedInterest()
+                value
             ),
-            14
+            18
         );
 
         this.mobileEarnedInterest = this.tokenService.toFixed(
             this.tokenService.formatAsset(
                 this.fromToken,
-                await this.gDaiService.getEarnedInterest()
+                value
             ),
             8
         );

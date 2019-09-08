@@ -4,6 +4,7 @@ import {Web3Service} from '../web3.service';
 import {ethers} from 'ethers';
 import {BigNumber} from 'ethers/utils';
 import {TokenService} from '../token.service';
+import {FulcrumService} from './fulcrum.service';
 
 const GDAI_ABI = [
     {
@@ -737,6 +738,7 @@ export class GDAIService {
     constructor(
         protected configurationService: ConfigurationService,
         protected web3Service: Web3Service,
+        protected fulcrumService: FulcrumService,
         protected tokenService: TokenService
     ) {
 
@@ -920,5 +922,29 @@ export class GDAIService {
                     reject(err);
                 });
         });
+    }
+
+    async getCurrentInterest(
+        balance: BigNumber,
+        secondsSpent: number,
+        interest: BigNumber,
+        supplyInterestRate: BigNumber
+    ) {
+
+        // console.log('interest', interest.toString());
+        // console.log('balance', balance.toString());
+        // console.log('secondsSpent', secondsSpent);
+        // console.log('supplyInterestRate', supplyInterestRate.toString());
+
+        return interest
+            .add(
+                balance
+                    .mul(secondsSpent)
+                    .mul(supplyInterestRate)
+                    .div(1e9)
+                    .div(1e9)
+                    .div(1e9)
+                    .div(1e9)
+            );
     }
 }
