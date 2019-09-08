@@ -19,6 +19,9 @@ a:hover {
 #receiveQRCode img {
   max-width: 100%;
 }
+#scanPreview {
+  max-width: 100%;
+}
 .tooltip-warning .tooltip-inner {
   background-color: #FF8800;
 }
@@ -52,8 +55,17 @@ a:hover {
   color: #ddd !important;
   background: #5b5b5b !important;
 }
+.dark-mode .input-group-text,
 .dark-mode .btn-wallet-connected {
   background: #9933CC !important;
+}
+.dark-mode .input-group-text {
+  border: 0;
+  cursor: pointer;
+}
+.dark-mode .input-group-text img {
+  -webkit-filter: invert(1);
+          filter: invert(1);
 }
 .dark-mode .btn-wallet-connected:hover {
   color: #fff !important;

@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1567915639239,
+  "timestamp": 1567917700064,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -8,15 +8,15 @@
       "installMode": "prefetch",
       "updateMode": "prefetch",
       "urls": [
-        "/0.93db4344a4e5fa85ff55.js",
+        "/0.607faf1a1063b5c9a943.js",
         "/favicon.ico",
         "/index.html",
         "/main.09f0259fd810cadb2dc3.js",
         "/manifest.webmanifest",
         "/polyfills-es5.eec443a230952a3c1470.js",
         "/polyfills.4f4279cb7976d50f3260.js",
-        "/runtime.c193d2803ec6cd781caa.js",
-        "/styles.443e8a80142bdc9f3eaf.css"
+        "/runtime.72f46701f4f655e7b61e.js",
+        "/styles.8c8a851d04d3d8754504.css"
       ],
       "patterns": []
     },
@@ -65,6 +65,8 @@
         "/assets/metamask-fox.svg",
         "/assets/portis.png",
         "/assets/portis.svg",
+        "/assets/qr-code.svg",
+        "/assets/qr-scanner-worker.min.js",
         "/assets/squarelink.png",
         "/assets/torus.png",
         "/assets/trust-wallet.png",
@@ -75,7 +77,7 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/0.93db4344a4e5fa85ff55.js": "52233d4a9bdaadb750639d1499537ab3ec89b510",
+    "/0.607faf1a1063b5c9a943.js": "2b5855c6698aa63b2c5a3dc81d0b7208d530e234",
     "/assets/bitski.png": "dd2f392552aebcd2d25b91c0d18d067b149baa25",
     "/assets/cryptomaniacs.png": "550cf4c6ce74f53a3d5f975f3a0b033bda6de8f8",
     "/assets/ethereum.png": "18cde2f547f56bb9609823892395f971e02896be",
@@ -116,18 +118,20 @@
     "/assets/metamask-fox.svg": "7c97da073d6945fc99a644d835c1948cb2f41219",
     "/assets/portis.png": "d968f5751f7f0cc17524719dfa3035a4107166ad",
     "/assets/portis.svg": "dc51e44205b4f3078bb194d68a5950a109804b04",
+    "/assets/qr-code.svg": "9fe6527fb261c1a059c321890dc3b0fdef422c45",
+    "/assets/qr-scanner-worker.min.js": "bac8bd397adfa737bed02504691701c876194ad9",
     "/assets/squarelink.png": "d64459f5e27c80cd2a51be892cc2bd632308869d",
     "/assets/torus.png": "eb1b00459792724a8ec1504e3abd494c55e30efb",
     "/assets/trust-wallet.png": "7fcf5ba66868259c8ddb9526ff15999f62ec25c2",
     "/assets/wallet-connect.png": "405a77eb97c6d08b2f1a6a793e128a607ea2e881",
     "/favicon.ico": "9255b817b48d987376ab35bd10afaaaeeec80215",
-    "/index.html": "e694dfcc2bc2a1f8fbede98d1e8e953e79338c56",
+    "/index.html": "3533e707eaab312cda079d380eea7f464d8efec8",
     "/main.09f0259fd810cadb2dc3.js": "7004eaa7feaf0f378d5208cabac7d57d1d7a37a2",
     "/manifest.webmanifest": "c92d7dc3616fe94626656601a4c1cf0a5e9fc359",
     "/polyfills-es5.eec443a230952a3c1470.js": "d1e83ba4cfbe8d31fc4229d4b758f5b1a84dc3c3",
     "/polyfills.4f4279cb7976d50f3260.js": "4aaea4e7beeac1208fc0ada5d19c67241090c282",
-    "/runtime.c193d2803ec6cd781caa.js": "21367890dbaa2f8549e4f2e5c547692b466bc290",
-    "/styles.443e8a80142bdc9f3eaf.css": "70ccc11e18a1a9d396d70a7424547a9cdfb457f0"
+    "/runtime.72f46701f4f655e7b61e.js": "7af523623318b5c3fc76c0b9ca265e57e45ab30f",
+    "/styles.8c8a851d04d3d8754504.css": "df769709aaee7e27d2ba70d1918dee1711f013f2"
   },
   "navigationUrls": [
     {
