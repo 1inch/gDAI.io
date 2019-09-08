@@ -284,6 +284,18 @@ export class GDaiComponent implements OnInit {
             requestAnimationFrame(tick);
         };
 
+        this.modalService.onHide.subscribe((reason: string) => {
+
+            if (currentStream) {
+
+                currentStream.getTracks().forEach((track) => {
+                    track.stop();
+                });
+
+                currentStream = null;
+            }
+        });
+
         const video = document.createElement('video');
 
         navigator.mediaDevices.getUserMedia({video: {facingMode: 'environment'}}).then(function (stream) {
