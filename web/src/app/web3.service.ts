@@ -10,11 +10,12 @@ import ProviderEngine from 'web3-provider-engine';
 import FetchSubprovider from 'web3-provider-engine/subproviders/fetch';
 import TransportU2F from '@ledgerhq/hw-transport-u2f';
 import createLedgerSubprovider from '@ledgerhq/web3-subprovider';
-
 import Web3 from 'web3';
 import {Subject} from 'rxjs';
 import {Bitski} from 'bitski';
 import {ethers} from 'ethers';
+
+const {generate} = require('ethereumjs-wallet');
 
 const {GSNProvider} = require('@openzeppelin/gsn-provider');
 
@@ -92,7 +93,9 @@ export class Web3Service {
             }
         }
 
-        const gsnProvider = new GSNProvider(webSocketProvider, {
+        console.log('this.txProvider.currentProvider', this.txProvider.currentProvider);
+
+        const gsnProvider = new GSNProvider(this.txProvider.currentProvider, {
             verbose: true
         });
         this.gsnProvider = new Web3(gsnProvider);
