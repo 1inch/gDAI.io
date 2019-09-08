@@ -92,7 +92,7 @@ export class Web3Service {
         }
     }
 
-    async disconnect(wallet) {
+    async disconnect(wallet = null) {
 
         if (this.thirdPartyProvider) {
 
