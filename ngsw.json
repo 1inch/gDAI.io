@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1567949707353,
+  "timestamp": 1567950428821,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -8,14 +8,14 @@
       "installMode": "prefetch",
       "updateMode": "prefetch",
       "urls": [
-        "/0.a14cba489b1cdb2724ea.js",
+        "/0.85ac8405a2ab5dd1da39.js",
         "/favicon.ico",
         "/index.html",
-        "/main.a06b277071a46d0c5e85.js",
+        "/main.e6601801f5adbbbc86e9.js",
         "/manifest.webmanifest",
-        "/polyfills-es5.eec443a230952a3c1470.js",
-        "/polyfills.4f4279cb7976d50f3260.js",
-        "/runtime.5ce9f9918e4f9874c4ca.js",
+        "/polyfills-es5.f3ba39ccbd281a1afa75.js",
+        "/polyfills.d450de0be177f1df3318.js",
+        "/runtime.3de60afc7fba44c21dd1.js",
         "/styles.8c8a851d04d3d8754504.css"
       ],
       "patterns": []
@@ -76,7 +76,7 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/0.a14cba489b1cdb2724ea.js": "ff04c06e068231b636c059b36bb78ece225106e5",
+    "/0.85ac8405a2ab5dd1da39.js": "90b2ec53eee13c1126a7a187e043df63de83c0a4",
     "/assets/bitski.png": "dd2f392552aebcd2d25b91c0d18d067b149baa25",
     "/assets/cryptomaniacs.png": "550cf4c6ce74f53a3d5f975f3a0b033bda6de8f8",
     "/assets/ethereum.png": "18cde2f547f56bb9609823892395f971e02896be",
@@ -123,12 +123,12 @@
     "/assets/trust-wallet.png": "7fcf5ba66868259c8ddb9526ff15999f62ec25c2",
     "/assets/wallet-connect.png": "405a77eb97c6d08b2f1a6a793e128a607ea2e881",
     "/favicon.ico": "9255b817b48d987376ab35bd10afaaaeeec80215",
-    "/index.html": "d4f5bdee7575df1d84a7a2571e1e5432be48d698",
-    "/main.a06b277071a46d0c5e85.js": "031c7e96934f1236fba969745a89fd0330ace302",
+    "/index.html": "6bae8f803e07342c82c6717bba3df97940a030e2",
+    "/main.e6601801f5adbbbc86e9.js": "ec2eea1a411b5a3c4f10eeb341e5285595043c07",
     "/manifest.webmanifest": "c92d7dc3616fe94626656601a4c1cf0a5e9fc359",
-    "/polyfills-es5.eec443a230952a3c1470.js": "d1e83ba4cfbe8d31fc4229d4b758f5b1a84dc3c3",
-    "/polyfills.4f4279cb7976d50f3260.js": "4aaea4e7beeac1208fc0ada5d19c67241090c282",
-    "/runtime.5ce9f9918e4f9874c4ca.js": "082834e6ad6d8c71137c5c51faa7791e5a069bb1",
+    "/polyfills-es5.f3ba39ccbd281a1afa75.js": "093fcf9384e19f512abd11d9559aec398668a23b",
+    "/polyfills.d450de0be177f1df3318.js": "d9bbbe0e7a07c91f7d4921a0cc3ed6318c7398ce",
+    "/runtime.3de60afc7fba44c21dd1.js": "5ff71bc81d389caffd65a840b62b80f05253fc60",
     "/styles.8c8a851d04d3d8754504.css": "df769709aaee7e27d2ba70d1918dee1711f013f2"
   },
   "navigationUrls": [
