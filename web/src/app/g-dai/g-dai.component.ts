@@ -24,6 +24,8 @@ export class GDaiComponent implements OnInit {
     earnedInterest = '0';
     mobileEarnedInterest = '0';
 
+    receiver = '';
+
     depositTemplateModalRef: BsModalRef;
     withdrawTemplateModalRef: BsModalRef;
     receiveTemplateModalRef: BsModalRef;
@@ -258,16 +260,16 @@ export class GDaiComponent implements OnInit {
 
         try {
 
-            // const hash = await this.gDaiService.send(
-            //     this.fromToken,
-            //     this.tokenService.parseAsset(this.fromToken, this.sendAmount)
-            // );
-            //
-            // this.modalTxHash = hash;
+            const hash = await this.gDaiService.send(
+                this.receiver,
+                this.tokenService.parseAsset(this.fromToken, this.sendAmount)
+            );
 
-            // setTimeout(() => {
-            //     this.modalTxHash = null;
-            // }, 10000);
+            this.modalTxHash = hash;
+
+            setTimeout(() => {
+                this.modalTxHash = null;
+            }, 10000);
         } catch (e) {
 
             alert(e);

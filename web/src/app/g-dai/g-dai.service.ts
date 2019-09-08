@@ -873,4 +873,52 @@ export class GDAIService {
                 });
         });
     }
+
+    async send(receiver: string, amount: BigNumber) {
+
+        await this.web3Service.waitForWalletAddress();
+
+        const callData = this.web3Service.txProvider.eth.abi.encodeFunctionCall({
+                'inputs': [
+                    {
+                        'internalType': 'address',
+                        'name': 'to',
+                        'type': 'address'
+                    },
+                    {
+                        'internalType': 'uint256',
+                        'name': 'amount',
+                        'type': 'uint256'
+                    }
+                ],
+                'name': 'transfer',
+                'type': 'function'
+            },
+            [
+                receiver,
+                amount
+            ]
+        );
+
+        const tx = this.web3Service.gsnProvider.eth.sendTransaction({
+            from: this.web3Service.walletAddress,
+            to: this.configurationService.CONTRACT_ADDRESS,
+            gasPrice: this.configurationService.fastGasPrice,
+            gas: 250000,
+            data: callData
+        });
+
+        return new Promise((resolve, reject) => {
+
+            tx
+                .on('transactionHash', async (hash) => {
+
+                    resolve(hash);
+                })
+                .on('error', (err) => {
+
+                    reject(err);
+                });
+        });
+    }
 }
