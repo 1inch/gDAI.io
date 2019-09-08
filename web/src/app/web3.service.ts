@@ -92,7 +92,9 @@ export class Web3Service {
             }
         }
 
-        const gsnProvider = new GSNProvider(webSocketProvider);
+        const gsnProvider = new GSNProvider(webSocketProvider, {
+            verbose: true
+        });
         this.gsnProvider = new Web3(gsnProvider);
     }
 
