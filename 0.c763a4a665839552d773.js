@@ -11030,7 +11030,7 @@ var GDaiComponent = /** @class */ (function () {
     };
     GDaiComponent.prototype.ngOnInit = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var startTime, timeCounter, supplyInterestRate, earnedInterest;
+            var startTime, timeCounter, supplyInterestRate, earnedInterest, updateCounter;
             var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
@@ -11065,8 +11065,9 @@ var GDaiComponent = /** @class */ (function () {
                         return [4 /*yield*/, this.gDaiService.getEarnedInterest()];
                     case 4:
                         earnedInterest = _a.sent();
-                        setInterval(function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                        updateCounter = function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
                             var currentInterest, liveInterest;
+                            var _this = this;
                             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                                 switch (_a.label) {
                                     case 0:
@@ -11083,10 +11084,19 @@ var GDaiComponent = /** @class */ (function () {
                                         else {
                                             this.setEarnedInterest(currentInterest);
                                         }
+                                        setTimeout(function () { return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                                            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                                                updateCounter();
+                                                return [2 /*return*/];
+                                            });
+                                        }); }, 2000);
                                         return [2 /*return*/];
                                 }
                             });
-                        }); }, 3000);
+                        }); };
+                        return [4 /*yield*/, updateCounter()];
+                    case 5:
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });
