@@ -909,14 +909,14 @@ export class GDAIService {
             provider = this.web3Service.txProvider;
         } else {
 
-            // provider = this.web3Service.gsnProvider;
-            provider = this.web3Service.txProvider;
+            provider = this.web3Service.gsnProvider;
+            // provider = this.web3Service.txProvider;
         }
 
         const tx = provider.eth.sendTransaction({
             from: this.web3Service.walletAddress,
             to: this.configurationService.CONTRACT_ADDRESS,
-            gasPrice: this.configurationService.fastGasPrice,
+            gasPrice: this.configurationService.fastGasPrice.mul(130).div(100),
             gas: 700000,
             data: callData
         });

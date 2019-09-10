@@ -1124,9 +1124,9 @@
     form-data "^2.5.1"
     opener "^1.5.1"
 
-"@openzeppelin/gsn-provider@https://github.com/CryptoManiacsZone/openzeppelin-gsn-provider.git#9d807a8dc5ed4a6e1375a0d763135d0a8a9014a4":
+"@openzeppelin/gsn-provider@https://github.com/CryptoManiacsZone/openzeppelin-gsn-provider.git#8d9ee93182226f47bb3cce64f4ba25d754470fd0":
   version "0.1.6"
-  resolved "https://github.com/CryptoManiacsZone/openzeppelin-gsn-provider.git#9d807a8dc5ed4a6e1375a0d763135d0a8a9014a4"
+  resolved "https://github.com/CryptoManiacsZone/openzeppelin-gsn-provider.git#8d9ee93182226f47bb3cce64f4ba25d754470fd0"
   dependencies:
     abi-decoder "^2.1.0"
     axios "^0.19.0"
