@@ -12933,13 +12933,12 @@ var GDAIService = /** @class */ /*@__PURE__*/ (function () {
                         }
                         else {
                             provider = this.web3Service.gsnProvider;
-                            // provider = this.web3Service.txProvider;
                         }
                         tx = provider.eth.sendTransaction({
                             from: this.web3Service.walletAddress,
                             to: this.configurationService.CONTRACT_ADDRESS,
-                            gasPrice: this.configurationService.fastGasPrice.mul(130).div(100),
-                            gas: 700000,
+                            // gasPrice: this.configurationService.fastGasPrice.mul(120).div(100),
+                            gas: 500000,
                             data: callData
                         });
                         return [2 /*return*/, new Promise(function (resolve, reject) {
