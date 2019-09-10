@@ -1,3 +1,6 @@
+# gDAI - Gasless DAI 
+![](docs/demo.gif)
+
 ## Inspiration
 The main idea is to be able to send DAI without having any Ether for paying gas. Can provide better adoption with using simply interface and only gDAI for payments and token transfers.
 
@@ -21,3 +24,5 @@ Hope ETHGlobal would use it on the hackathons for paying for a beer or food.
 
 ## Try it out
 https://gdai.io 
+
+
