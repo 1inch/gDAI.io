@@ -15,9 +15,6 @@
         "importHelpers": true,
         "skipLibCheck": true,
         "target": "es5",
-        "paths": {
-            "stream": ["../node_modules/readable-stream/readable.js"]
-        },
         "typeRoots": [
             "node_modules/@types"
         ],
