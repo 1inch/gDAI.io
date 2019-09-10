@@ -32,7 +32,7 @@
         "@ledgerhq/hw-transport-u2f": "4.24.0",
         "@ledgerhq/web3-subprovider": "4.24.0",
         "@ng-bootstrap/ng-bootstrap": "^5.1.0",
-        "@openzeppelin/gsn-provider": "https://github.com/CryptoManiacsZone/openzeppelin-gsn-provider.git#8d9ee93182226f47bb3cce64f4ba25d754470fd0",
+        "@openzeppelin/gsn-provider": "^0.1.6",
         "@portis/web3": "^2.0.0-beta.42",
         "@toruslabs/torus-embed": "^0.0.28",
         "@types/web3": "^1.0.19",
