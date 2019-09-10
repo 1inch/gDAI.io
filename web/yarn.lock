@@ -1124,17 +1124,16 @@
     form-data "^2.5.1"
     opener "^1.5.1"
 
-"@openzeppelin/gsn-provider@^0.1.6":
+"@openzeppelin/gsn-provider@https://github.com/CryptoManiacsZone/openzeppelin-gsn-provider.git#9d807a8dc5ed4a6e1375a0d763135d0a8a9014a4":
   version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@openzeppelin/gsn-provider/-/gsn-provider-0.1.6.tgz#318594ec3e57d6b50bd979c82ae188a128cd1cd7"
-  integrity sha512-qOGZvRmmKhTIto1WnNiVUB8YXWI9pW+tfgOKqJ2Vc6BIdJyVd7N3t+ZX1xvJu9d8sizNhP0oIxcaE5HqZXX1TQ==
+  resolved "https://github.com/CryptoManiacsZone/openzeppelin-gsn-provider.git#9d807a8dc5ed4a6e1375a0d763135d0a8a9014a4"
   dependencies:
     abi-decoder "^2.1.0"
     axios "^0.19.0"
     bignumber.js "^9.0.0"
-    eth-crypto "^1.3.4"
-    eth-sig-util "^2.3.0"
-    ethereumjs-tx "^1.3.7"
+    eth-crypto "^1.4.0"
+    eth-sig-util "https://github.com/CryptoManiacsZone/eth-sig-util.git#1fdf27bd02bdee4d7daa34e296a4454fc525c6ab"
+    ethereumjs-tx "^2.1.1"
     ethereumjs-util "^6.1.0"
     ethereumjs-wallet "^0.6.3"
     web3 "^1.2.1"
@@ -1169,10 +1168,10 @@
     xhr "^2.2.0"
     xtend "^4.0.1"
 
-"@portis/web3@^2.0.0-beta.38":
-  version "2.0.0-beta.41"
-  resolved "https://registry.yarnpkg.com/@portis/web3/-/web3-2.0.0-beta.41.tgz#eda6ab11119a4ebd242ad3d723f0098f59ab36a4"
-  integrity sha512-tpzYkaG9cu//BVR+91zKwZk4A37ghUpnYm9B3bsQik7OsttyOjApCm6joIyzOKOj9d9NLVPmc0Zge0bPWKQAlg==
+"@portis/web3@^2.0.0-beta.42":
+  version "2.0.0-beta.42"
+  resolved "https://registry.yarnpkg.com/@portis/web3/-/web3-2.0.0-beta.42.tgz#995d506d77103044974aac55c17f4d7a54b0f454"
+  integrity sha512-70g64D5NY/K9VNEsaPI/XxLyUWVW/rTLTVQXN8rYQqu2TLTPZHbwdWSJ/l5MQ6Kot/Alm3nG1ldWdcb+A9jRog==
   dependencies:
     "@portis/web3-provider-engine" "1.0.10"
     ethereumjs-util "5.2.0"
@@ -4580,7 +4579,7 @@ eth-block-tracker@^4.2.0, eth-block-tracker@^4.4.1, eth-block-tracker@^4.4.2:
     pify "^3.0.0"
     safe-event-emitter "^1.0.1"
 
-eth-crypto@^1.3.4:
+eth-crypto@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/eth-crypto/-/eth-crypto-1.4.0.tgz#043b49bf54e143055c7cdd9cb36719f7c0218c15"
   integrity sha512-BWeQFoGvutBnA4rH7IQTUHHbV+YludDueVxlqNXG3XXOMdrulLSqAPkxv8h4AlfBJnn50zJBmoyhJ11UIbz8EA==
@@ -4746,10 +4745,9 @@ eth-sig-util@^1.4.2:
     ethereumjs-abi "git+https://github.com/ethereumjs/ethereumjs-abi.git"
     ethereumjs-util "^5.1.1"
 
-eth-sig-util@^2.3.0:
+"eth-sig-util@https://github.com/CryptoManiacsZone/eth-sig-util.git#1fdf27bd02bdee4d7daa34e296a4454fc525c6ab":
   version "2.4.4"
-  resolved "https://registry.yarnpkg.com/eth-sig-util/-/eth-sig-util-2.4.4.tgz#8804ead83de8648bcf81eadbfac1e3ccdd360aea"
-  integrity sha512-iWGqEJwsUMgtk8AqQQqIDTjMz+pW8s2Sq8gN640dh9U9HoEFQJO3m6ro96DgV6hMB2LYu8F5812LQyynOgCbEw==
+  resolved "https://github.com/CryptoManiacsZone/eth-sig-util.git#1fdf27bd02bdee4d7daa34e296a4454fc525c6ab"
   dependencies:
     buffer "^5.2.1"
     elliptic "^6.4.0"
@@ -4846,7 +4844,7 @@ ethereumjs-block@~2.2.0:
     ethereumjs-util "^5.0.0"
     merkle-patricia-tree "^2.1.2"
 
-ethereumjs-common@^1.1.0, ethereumjs-common@^1.3.0:
+ethereumjs-common@^1.1.0, ethereumjs-common@^1.3.0, ethereumjs-common@^1.3.1:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/ethereumjs-common/-/ethereumjs-common-1.3.2.tgz#5a20831e52199a31ff4b68ef361e34c05c976ed0"
   integrity sha512-GkltYRIqBLzaZLmF/K3E+g9lZ4O4FL+TtpisAlD3N+UVlR+mrtoG+TvxavqVa6PwOY4nKIEMe5pl6MrTio3Lww==
@@ -4866,6 +4864,14 @@ ethereumjs-tx@^1.1.1, ethereumjs-tx@^1.2.0, ethereumjs-tx@^1.2.2, ethereumjs-tx@
   dependencies:
     ethereum-common "^0.0.18"
     ethereumjs-util "^5.0.0"
+
+ethereumjs-tx@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/ethereumjs-tx/-/ethereumjs-tx-2.1.1.tgz#7d204e2b319156c9bc6cec67e9529424a26e8ccc"
+  integrity sha512-QtVriNqowCFA19X9BCRPMgdVNJ0/gMBS91TQb1DfrhsbR748g4STwxZptFAwfqehMyrF8rDwB23w87PQwru0wA==
+  dependencies:
+    ethereumjs-common "^1.3.1"
+    ethereumjs-util "^6.0.0"
 
 ethereumjs-util@4.5.0, ethereumjs-util@^4.3.0:
   version "4.5.0"

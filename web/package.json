@@ -31,8 +31,7 @@
         "@ledgerhq/hw-transport-u2f": "4.24.0",
         "@ledgerhq/web3-subprovider": "4.24.0",
         "@ng-bootstrap/ng-bootstrap": "^5.1.0",
-        "@openzeppelin/gsn-provider": "^0.1.6",
-        "@portis/web3": "^2.0.0-beta.38",
+        "@portis/web3": "^2.0.0-beta.42",
         "@toruslabs/torus-embed": "^0.0.28",
         "@types/web3": "^1.0.19",
         "@walletconnect/web3-provider": "^1.0.0-beta.35",
@@ -53,7 +52,8 @@
         "tslib": "^1.9.0",
         "web3": "^1.2.1",
         "web3-provider-engine": "^15.0.3",
-        "zone.js": "~0.9.1"
+        "zone.js": "~0.9.1",
+        "@openzeppelin/gsn-provider": "https://github.com/CryptoManiacsZone/openzeppelin-gsn-provider.git#9d807a8dc5ed4a6e1375a0d763135d0a8a9014a4"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "~0.803.0",

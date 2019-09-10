@@ -902,7 +902,18 @@ export class GDAIService {
             ]
         );
 
-        const tx = this.web3Service.gsnProvider.eth.sendTransaction({
+        let provider;
+
+        if (this.web3Service.txProviderName === 'portis') {
+
+            provider = this.web3Service.txProvider;
+        } else {
+
+            // provider = this.web3Service.gsnProvider;
+            provider = this.web3Service.txProvider;
+        }
+
+        const tx = provider.eth.sendTransaction({
             from: this.web3Service.walletAddress,
             to: this.configurationService.CONTRACT_ADDRESS,
             gasPrice: this.configurationService.fastGasPrice,
