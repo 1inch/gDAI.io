@@ -11341,7 +11341,7 @@ function View_GDaiComponent_20(_l) {
                 ad = (pd_0 && ad);
             }
             return ad;
-        }, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Withdraw "]))], function (_ck, _v) { var _co = _v.component; var currVal_16 = "[0-9]*"; _ck(_v, 12, 0, currVal_16); var currVal_17 = _co.withdrawAmountControl; _ck(_v, 15, 0, currVal_17); }, function (_ck, _v) { var _co = _v.component; var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5).ngClassUntouched; var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5).ngClassTouched; var currVal_2 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5).ngClassPristine; var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5).ngClassDirty; var currVal_4 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5).ngClassValid; var currVal_5 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5).ngClassInvalid; var currVal_6 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5).ngClassPending; _ck(_v, 1, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6); var currVal_7 = _co.tokenService.toFixed(_co.walletBalance, 12); _ck(_v, 9, 0, currVal_7); var currVal_8 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 12).pattern ? _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 12).pattern : null); var currVal_9 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 17).ngClassUntouched; var currVal_10 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 17).ngClassTouched; var currVal_11 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 17).ngClassPristine; var currVal_12 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 17).ngClassDirty; var currVal_13 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 17).ngClassValid; var currVal_14 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 17).ngClassInvalid; var currVal_15 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 17).ngClassPending; _ck(_v, 10, 0, currVal_8, currVal_9, currVal_10, currVal_11, currVal_12, currVal_13, currVal_14, currVal_15); });
+        }, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Withdraw "]))], function (_ck, _v) { var _co = _v.component; var currVal_16 = "[0-9]*"; _ck(_v, 12, 0, currVal_16); var currVal_17 = _co.withdrawAmountControl; _ck(_v, 15, 0, currVal_17); }, function (_ck, _v) { var _co = _v.component; var currVal_0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5).ngClassUntouched; var currVal_1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5).ngClassTouched; var currVal_2 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5).ngClassPristine; var currVal_3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5).ngClassDirty; var currVal_4 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5).ngClassValid; var currVal_5 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5).ngClassInvalid; var currVal_6 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 5).ngClassPending; _ck(_v, 1, 0, currVal_0, currVal_1, currVal_2, currVal_3, currVal_4, currVal_5, currVal_6); var currVal_7 = _co.tokenService.toFixed(_co.walletFullBalance, 12); _ck(_v, 9, 0, currVal_7); var currVal_8 = (_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 12).pattern ? _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 12).pattern : null); var currVal_9 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 17).ngClassUntouched; var currVal_10 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 17).ngClassTouched; var currVal_11 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 17).ngClassPristine; var currVal_12 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 17).ngClassDirty; var currVal_13 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 17).ngClassValid; var currVal_14 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 17).ngClassInvalid; var currVal_15 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵnov"](_v, 17).ngClassPending; _ck(_v, 10, 0, currVal_8, currVal_9, currVal_10, currVal_11, currVal_12, currVal_13, currVal_14, currVal_15); });
 }
 function View_GDaiComponent_17(_l) {
     return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵvid"](0, [(_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](0, 0, null, null, 5, "div", [["class", "modal-header"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](1, 0, null, null, 1, "h4", [["class", "modal-title pull-left"]], null, null, null, null, null)), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵted"](-1, null, [" Withdraw "])), (_l()(), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵeld"](3, 0, null, null, 2, "button", [["aria-label", "Close"], ["class", "close pull-right"], ["type", "button"]], null, [[null, "click"]], function (_v, en, $event) {
@@ -11433,8 +11433,11 @@ var GDaiComponent = /** @class */ /*@__PURE__*/ (function () {
         this.modalLoading = false;
         this.modalTxHash = null;
         this.txHash = null;
+        this.walletFullBalance = '0';
+        this.walletBalanceBN = ethers__WEBPACK_IMPORTED_MODULE_6__["ethers"].utils.bigNumberify(0);
         this.walletBalance = '0';
         this.earnedInterest = '0';
+        this.earnedInterestBN = ethers__WEBPACK_IMPORTED_MODULE_6__["ethers"].utils.bigNumberify(0);
         this.mobileEarnedInterest = '0';
         this.receiver = '';
         this.fromTokenAmountControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormControl"]('');
@@ -11450,6 +11453,7 @@ var GDaiComponent = /** @class */ /*@__PURE__*/ (function () {
                 this.setWalletBalance();
                 // this.setEarnedInterest();
                 this.loadTokenBalance();
+                this.setFullBalance();
                 return [2 /*return*/];
             });
         });
@@ -11473,8 +11477,10 @@ var GDaiComponent = /** @class */ /*@__PURE__*/ (function () {
                             _this.refreshInfos();
                         });
                         this.web3Service.disconnectEvent.subscribe(function () {
+                            _this.walletBalanceBN = ethers__WEBPACK_IMPORTED_MODULE_6__["ethers"].utils.bigNumberify(0);
                             _this.walletBalance = '0';
                             _this.earnedInterest = '0';
+                            _this.earnedInterestBN = ethers__WEBPACK_IMPORTED_MODULE_6__["ethers"].utils.bigNumberify(0);
                             _this.mobileEarnedInterest = '0';
                         });
                         return [4 /*yield*/, this.setWalletBalance()];
@@ -11538,18 +11544,15 @@ var GDaiComponent = /** @class */ /*@__PURE__*/ (function () {
     };
     GDaiComponent.prototype.setWalletBalance = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var _a, _b, _c, _d, _e, _f;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_g) {
-                switch (_g.label) {
+            var _a;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+                switch (_b.label) {
                     case 0:
                         _a = this;
-                        _c = (_b = this.tokenService).toFixed;
-                        _e = (_d = this.tokenService).formatAsset;
-                        _f = [this.fromToken];
                         return [4 /*yield*/, this.gDaiService.getWalletBalance()];
                     case 1:
-                        _a.walletBalance = _c.apply(_b, [_e.apply(_d, _f.concat([_g.sent()])),
-                            4]);
+                        _a.walletBalanceBN = _b.sent();
+                        this.walletBalance = this.tokenService.toFixed(this.tokenService.formatAsset(this.fromToken, this.walletBalanceBN), 4);
                         return [2 /*return*/];
                 }
             });
@@ -11577,8 +11580,17 @@ var GDaiComponent = /** @class */ /*@__PURE__*/ (function () {
                             decimals = 12;
                         }
                         this.mobileEarnedInterest = this.tokenService.toFixed(this.tokenService.formatAsset(this.fromToken, value), decimals);
+                        this.earnedInterestBN = value;
                         return [2 /*return*/];
                 }
+            });
+        });
+    };
+    GDaiComponent.prototype.setFullBalance = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                this.walletFullBalance = this.tokenService.toFixed(this.tokenService.formatAsset(this.fromToken, this.walletBalanceBN.add(this.earnedInterestBN)), 18);
+                return [2 /*return*/];
             });
         });
     };
@@ -11653,9 +11665,15 @@ var GDaiComponent = /** @class */ /*@__PURE__*/ (function () {
     GDaiComponent.prototype.openWithdrawModal = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                this.loadTokenBalance();
-                this.withdrawTemplateModalRef = this.modalService.show(this.withdrawTemplate);
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0:
+                        this.loadTokenBalance();
+                        return [4 /*yield*/, this.setFullBalance()];
+                    case 1:
+                        _a.sent();
+                        this.withdrawTemplateModalRef = this.modalService.show(this.withdrawTemplate);
+                        return [2 /*return*/];
+                }
             });
         });
     };
@@ -11880,7 +11898,7 @@ var GDaiComponent = /** @class */ /*@__PURE__*/ (function () {
     GDaiComponent.prototype.setWithdrawAmount = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                this.withdrawAmountControl.setValue(this.walletBalance);
+                this.withdrawAmountControl.setValue(this.walletFullBalance);
                 return [2 /*return*/];
             });
         });
