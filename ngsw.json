@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1568237538575,
+  "timestamp": 1568237958214,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -8,14 +8,14 @@
       "installMode": "prefetch",
       "updateMode": "prefetch",
       "urls": [
-        "/0.50b09aea33eca035ce4b.js",
+        "/0.e16fc9df50d7afedd906.js",
         "/favicon.ico",
         "/index.html",
         "/main.02289a0b7ffc41134963.js",
         "/manifest.webmanifest",
         "/polyfills-es5.cef33e094ffbfc75ac3a.js",
         "/polyfills.911ce91b9bf10f3f97fc.js",
-        "/runtime.bb40c14a4ddeba667f46.js",
+        "/runtime.cf8a65fe834e362bce8b.js",
         "/styles.8c8a851d04d3d8754504.css",
         "/vendor.e650c57be893d5e28a2d.js"
       ],
@@ -71,7 +71,7 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/0.50b09aea33eca035ce4b.js": "da841d67a0007bdc6a79bb54e223dd877462cacc",
+    "/0.e16fc9df50d7afedd906.js": "ab17c4c0ec9d32599784cfaffd66f44ff57fd5f7",
     "/assets/bitski.png": "dd2f392552aebcd2d25b91c0d18d067b149baa25",
     "/assets/cryptomaniacs.png": "550cf4c6ce74f53a3d5f975f3a0b033bda6de8f8",
     "/assets/ethereum.png": "18cde2f547f56bb9609823892395f971e02896be",
@@ -112,12 +112,12 @@
     "/assets/trust-wallet.png": "7fcf5ba66868259c8ddb9526ff15999f62ec25c2",
     "/assets/wallet-connect.png": "405a77eb97c6d08b2f1a6a793e128a607ea2e881",
     "/favicon.ico": "0cc0fcbd7a81221ec751bc45af243251cdf3bd3d",
-    "/index.html": "f0f5730fb18a5faa350cbb4137ad8e828ea59012",
+    "/index.html": "b3770032f43ac3ca712cbac0981f96b6ca977d31",
     "/main.02289a0b7ffc41134963.js": "10c03d64a8782c2cab2a99fe5bb39a9c6f86e379",
     "/manifest.webmanifest": "c92d7dc3616fe94626656601a4c1cf0a5e9fc359",
     "/polyfills-es5.cef33e094ffbfc75ac3a.js": "4e49fca596f013716e77e195b97dd2609a6ace32",
     "/polyfills.911ce91b9bf10f3f97fc.js": "93c327b0189f9927788ea0f714dd86f9b27fb5d9",
-    "/runtime.bb40c14a4ddeba667f46.js": "c0bc26ed04a30e9480a04568750ba6b714dd2c97",
+    "/runtime.cf8a65fe834e362bce8b.js": "615f7498cd680face28bb191b7b24ed3674c4aa4",
     "/styles.8c8a851d04d3d8754504.css": "df769709aaee7e27d2ba70d1918dee1711f013f2",
     "/vendor.e650c57be893d5e28a2d.js": "9395be0dd628291647860ddd8c16756d2dae40ba"
   },
