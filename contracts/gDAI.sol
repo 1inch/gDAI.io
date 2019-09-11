@@ -7,7 +7,6 @@ import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 
 import "./GasDiscounter.sol";
 import "./EarnedInterestERC20.sol";
-import "./IKyber.sol";
 import "./IUniswap.sol";
 
 contract gDAI is Ownable, EarnedInterestERC20, ERC20Detailed, GasDiscounter, GSNRecipient {
@@ -21,7 +20,6 @@ contract gDAI is Ownable, EarnedInterestERC20, ERC20Detailed, GasDiscounter, GSN
     IERC20 public eth = IERC20(0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE);
     IERC20 public dai = IERC20(0x89d24A6b4CcB1B6fAA2625fE562bDD9a23260359);
     IFulcrum public fulcrum = IFulcrum(0x14094949152EDDBFcd073717200DA82fEd8dC960);
-    IKyber public kyber = IKyber(0x818E6FECD516Ecc3849DAf6845e3EC868087B755);
     IUniswap public uniswap = IUniswap(0x09cabEC1eAd1c0Ba254B09efb3EE13841712bE14);
 
     modifier compensateGas {
@@ -36,17 +34,10 @@ contract gDAI is Ownable, EarnedInterestERC20, ERC20Detailed, GasDiscounter, GSN
         }
     }
 
-    constructor(
-        address _feeReceiver
-    ) public ERC20Detailed("Gasless DAI", "gDAI", 18) {
+    constructor() public ERC20Detailed("Gasless DAI", "gDAI", 18) {
 
-        feeReceiver = _feeReceiver;
         dai.approve(address(fulcrum), uint256(- 1));
-    }
-
-    function setFeeReceiver(address _feeReceiver) public onlyOwner {
-
-        feeReceiver = _feeReceiver;
+        dai.approve(address(uniswap), uint256(- 1));
     }
 
     function() external payable {
@@ -79,15 +70,17 @@ contract gDAI is Ownable, EarnedInterestERC20, ERC20Detailed, GasDiscounter, GSN
         _setEarnedInteres(_msgSender(), earned);
     }
 
+    function withdrawAll() public compensateGas {
+        withdraw(balanceOf(msg.sender));
+    }
+
     function withdraw(uint256 amount) public compensateGas {
 
         uint256 earned = earnedInterest(_msgSender());
 
         _burn(_msgSender(), amount);
         _getFromFulcrum(amount);
-        // Get with extra
         dai.safeTransfer(_msgSender(), amount);
-        // _putToFulcrum(); // Return some extra
 
         _setEarnedInteres(_msgSender(), earned);
     }
@@ -120,14 +113,14 @@ contract gDAI is Ownable, EarnedInterestERC20, ERC20Detailed, GasDiscounter, GSN
 
     // Check user have enough balance for gas compensation and method is allowed (have modifiers)
     function acceptRelayedCall(
-        address relay,
+        address /*relay*/,
         address from,
         bytes memory encodedFunction,
-        uint256 transactionFee,
-        uint256 gasPrice,
-        uint256 gasLimit,
-        uint256 nonce,
-        bytes memory approvalData,
+        uint256 /*transactionFee*/,
+        uint256 /*gasPrice*/,
+        uint256 /*gasLimit*/,
+        uint256 /*nonce*/,
+        bytes memory /*approvalData*/,
         uint256 maxPossibleCharge
     )
     public
@@ -137,7 +130,6 @@ contract gDAI is Ownable, EarnedInterestERC20, ERC20Detailed, GasDiscounter, GSN
         // Avoid "Stack too deep" error
         address sender = from;
 
-        // Kyber prica discovery costs too many gas, so use Uniswap
         uint256 ethPrice = uniswap.getEthToTokenInputPrice(maxPossibleCharge);
 
         uint256 subAmount;
@@ -161,10 +153,11 @@ contract gDAI is Ownable, EarnedInterestERC20, ERC20Detailed, GasDiscounter, GSN
         }
 
         if (!compareBytesWithSelector(encodedFunction, this.transfer.selector) &&
-        !compareBytesWithSelector(encodedFunction, this.transferFrom.selector) &&
-        !compareBytesWithSelector(encodedFunction, this.approve.selector) &&
-        !compareBytesWithSelector(encodedFunction, this.deposit.selector) &&
-        !compareBytesWithSelector(encodedFunction, this.withdraw.selector))
+            !compareBytesWithSelector(encodedFunction, this.transferFrom.selector) &&
+            !compareBytesWithSelector(encodedFunction, this.approve.selector) &&
+            !compareBytesWithSelector(encodedFunction, this.deposit.selector) &&
+            !compareBytesWithSelector(encodedFunction, this.withdraw.selector) &&
+            !compareBytesWithSelector(encodedFunction, this.withdrawAll.selector))
         {
             return (2, "This gDAI function can't ba called via GSN");
         }
@@ -175,9 +168,9 @@ contract gDAI is Ownable, EarnedInterestERC20, ERC20Detailed, GasDiscounter, GSN
     function compareBytesWithSelector(bytes memory data, bytes4 sel) internal pure returns (bool) {
 
         return data[0] == sel[0]
-        && data[1] == sel[1]
-        && data[2] == sel[2]
-        && data[3] == sel[3];
+            && data[1] == sel[1]
+            && data[2] == sel[2]
+            && data[3] == sel[3];
     }
 
     function _putToFulcrum() internal {
@@ -192,35 +185,27 @@ contract gDAI is Ownable, EarnedInterestERC20, ERC20Detailed, GasDiscounter, GSN
     }
 
     function _compensateGas(uint256 gasSpent) internal {
-        (uint256 ethPrice,) = kyber.getExpectedRate(eth, dai, 10e18);
-        // 10 DAI
-
-        uint256 actualCharge = tx.gasprice.mul(gasSpent.add(50000));
-        // +50K for _transfer
+        uint256 actualCharge = tx.gasprice.mul(gasSpent);
+        uint256 ethPrice = uniswap.getEthToTokenInputPrice(actualCharge);
         uint256 daiNeeded = actualCharge.mul(1e18).div(ethPrice);
 
-        if (balanceOf(address(this)).add(daiNeeded) < 10e18) {// less than 10 DAI
+        // If relay balance > 10 transactions
+        if (IRelayHub(getHubAddr()).balanceOf(address(this)) > tx.gasprice.mul(gasSpent).mul(10)) {
 
             _transferEarnedInterestFirst(_msgSender(), address(this), daiNeeded);
             return;
         }
 
-        actualCharge = actualCharge.add(tx.gasprice.mul(500000));
-        // +500K for Kyber
+        actualCharge = actualCharge.add(tx.gasprice.mul(100000)); // +100K for Uniswap
         daiNeeded = actualCharge.mul(1e18).div(ethPrice);
         _transferEarnedInterestFirst(_msgSender(), address(this), daiNeeded);
 
-        uint256 daiExtracted = _getFromFulcrum(daiNeeded);
+        _getFromFulcrum(daiNeeded);
 
-        kyber.tradeWithHint(
-            dai,
-            daiExtracted,
-            eth,
-            address(this),
-            1 << 255,
+        uniswap.tokenToEthSwapInput(
+            dai.balanceOf(address(this)),
             1,
-            feeReceiver,
-            ""
+            block.number + 1
         );
     }
 }
