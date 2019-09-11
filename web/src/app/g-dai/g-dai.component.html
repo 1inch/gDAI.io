@@ -207,7 +207,7 @@
                                class="form-text text-muted text-left position-relative mb-1"
                                id="walletBalance"
                                style="margin-top: -23px; white-space: nowrap;overflow: hidden;text-overflow: ellipsis; cursor: pointer;">
-                            Max: {{tokenService.toFixed(walletBalance, 12)}}
+                            Max: {{tokenService.toFixed(walletFullBalance, 12)}}
                         </small>
                         <input [formControl]="withdrawAmountControl"
                                aria-describedby="walletBalance" autocomplete="off"

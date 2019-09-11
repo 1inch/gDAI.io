@@ -25,8 +25,11 @@ export class GDaiComponent implements OnInit {
     modalTxHash = null;
     txHash = null;
 
+    walletFullBalance = '0';
+    walletBalanceBN = ethers.utils.bigNumberify(0);
     walletBalance = '0';
     earnedInterest = '0';
+    earnedInterestBN = ethers.utils.bigNumberify(0);
     mobileEarnedInterest = '0';
 
     receiver = '';
@@ -73,6 +76,7 @@ export class GDaiComponent implements OnInit {
         this.setWalletBalance();
         // this.setEarnedInterest();
         this.loadTokenBalance();
+        this.setFullBalance();
     }
 
     async ngOnInit() {
@@ -98,8 +102,10 @@ export class GDaiComponent implements OnInit {
 
         this.web3Service.disconnectEvent.subscribe(() => {
 
+            this.walletBalanceBN = ethers.utils.bigNumberify(0);
             this.walletBalance = '0';
             this.earnedInterest = '0';
+            this.earnedInterestBN = ethers.utils.bigNumberify(0);
             this.mobileEarnedInterest = '0';
         });
 
@@ -151,10 +157,11 @@ export class GDaiComponent implements OnInit {
 
     async setWalletBalance() {
 
+        this.walletBalanceBN = await this.gDaiService.getWalletBalance();
         this.walletBalance = this.tokenService.toFixed(
             this.tokenService.formatAsset(
                 this.fromToken,
-                await this.gDaiService.getWalletBalance()
+                this.walletBalanceBN
             ),
             4
         );
@@ -188,6 +195,19 @@ export class GDaiComponent implements OnInit {
                 value
             ),
             decimals
+        );
+
+        this.earnedInterestBN = value;
+    }
+
+    async setFullBalance() {
+
+        this.walletFullBalance = this.tokenService.toFixed(
+            this.tokenService.formatAsset(
+                this.fromToken,
+                this.walletBalanceBN.add(this.earnedInterestBN)
+            ),
+            18
         );
     }
 
@@ -269,6 +289,7 @@ export class GDaiComponent implements OnInit {
     async openWithdrawModal() {
 
         this.loadTokenBalance();
+        await this.setFullBalance();
         this.withdrawTemplateModalRef = this.modalService.show(this.withdrawTemplate);
     }
 
@@ -489,7 +510,7 @@ export class GDaiComponent implements OnInit {
 
     async setWithdrawAmount() {
 
-        this.withdrawAmountControl.setValue(this.walletBalance);
+        this.withdrawAmountControl.setValue(this.walletFullBalance);
     }
 
     async setSendAmount() {
