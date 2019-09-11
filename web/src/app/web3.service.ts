@@ -190,6 +190,9 @@ export class Web3Service {
         });
         this.gsnProvider = new Web3(gsnProvider);
 
+        // const portis = new Portis('89075d3e-a065-4752-ba0f-1e3e839efebf', 'mainnet', {gasRelay: true});
+        // this.gsnProvider = new Web3(portis.provider);
+
         this.connectEvent.next({
             walletAddress: this.walletAddress,
             walletIcon: this.walletIcon
@@ -316,7 +319,7 @@ export class Web3Service {
 
         try {
 
-            const portis = new Portis('89075d3e-a065-4752-ba0f-1e3e839efebf', 'mainnet');
+            const portis = new Portis('89075d3e-a065-4752-ba0f-1e3e839efebf', 'mainnet', {gasRelay: true});
 
             this.txProvider = new Web3(
                 portis.provider

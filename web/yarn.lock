@@ -1169,10 +1169,10 @@
     xhr "^2.2.0"
     xtend "^4.0.1"
 
-"@portis/web3@^2.0.0-beta.38":
-  version "2.0.0-beta.41"
-  resolved "https://registry.yarnpkg.com/@portis/web3/-/web3-2.0.0-beta.41.tgz#eda6ab11119a4ebd242ad3d723f0098f59ab36a4"
-  integrity sha512-tpzYkaG9cu//BVR+91zKwZk4A37ghUpnYm9B3bsQik7OsttyOjApCm6joIyzOKOj9d9NLVPmc0Zge0bPWKQAlg==
+"@portis/web3@^2.0.0-beta.42":
+  version "2.0.0-beta.42"
+  resolved "https://registry.yarnpkg.com/@portis/web3/-/web3-2.0.0-beta.42.tgz#995d506d77103044974aac55c17f4d7a54b0f454"
+  integrity sha512-70g64D5NY/K9VNEsaPI/XxLyUWVW/rTLTVQXN8rYQqu2TLTPZHbwdWSJ/l5MQ6Kot/Alm3nG1ldWdcb+A9jRog==
   dependencies:
     "@portis/web3-provider-engine" "1.0.10"
     ethereumjs-util "5.2.0"
@@ -3042,7 +3042,7 @@ buffer@^4.3.0:
     ieee754 "^1.1.4"
     isarray "^1.0.0"
 
-buffer@^5.0.5, buffer@^5.2.1, buffer@^5.4.0:
+buffer@^5.0.5, buffer@^5.2.1, buffer@^5.4.2:
   version "5.4.2"
   resolved "https://registry.yarnpkg.com/buffer/-/buffer-5.4.2.tgz#2012872776206182480eccb2c0fba5f672a2efef"
   integrity sha512-iy9koArjAFCzGnx3ZvNA6Z0clIbbFgbdWQ0mKD3hO0krOrZh8UgA6qMKcZvwLJxS+D6iVR76+5/pV56yMNYTag==
@@ -10351,10 +10351,10 @@ squarelink-provider-engine@^15.0.5:
     xhr "^2.2.0"
     xtend "^4.0.1"
 
-squarelink@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/squarelink/-/squarelink-1.0.8.tgz#260ceeb0559a20854498d97a1b835e8f480e4f9a"
-  integrity sha512-CfYyZxc8GkyKxIjbgPxGwKMCxERUqoJ1nifRg8oR7yT32zWhhWL8KE0SbUF0qavw3Z+sHhI6LLq07sD4KhDgfQ==
+squarelink@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/squarelink/-/squarelink-1.0.9.tgz#d7f767aa38173ea8676643b531680b2e70223938"
+  integrity sha512-6VWKwo8cbECuI+wljKivRfgjXrLbS4maLHlKHDxTd63Q64tg5nUMmXLwwfBcDbltuCptgQUjSfWHt2/igBD/Nw==
   dependencies:
     babel-runtime "^6.26.0"
     bignumber.js "^9.0.0"

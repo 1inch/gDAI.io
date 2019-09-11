@@ -12,7 +12,7 @@ export class ConfigurationService {
 
     public GAS_PRICE_URL = 'https://gasprice.poa.network';
     public FULCRUM_IDAI_ADDRESS = '0x14094949152EDDBFcd073717200DA82fEd8dC960';
-    public CONTRACT_ADDRESS = '0x70be979bf4193faf77eaada12cbb068ff0479a5a';
+    public CONTRACT_ADDRESS = '0xf45c0A404AAc29A89F80e0Aa16cd03918C7b4384';
 
     public fastGasPrice;
     public standardGasPrice;
@@ -41,6 +41,6 @@ export class ConfigurationService {
 
         setTimeout(() => {
             this.getGasPrices();
-        }, 30000);
+        }, 12000);
     }
 }

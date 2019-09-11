@@ -109,7 +109,7 @@ export class GDaiComponent implements OnInit {
         const startTime = this.getUnixTimestamp();
         let timeCounter = 0;
         const supplyInterestRate = await this.fulcrumService.supplyInterestRate();
-        const earnedInterest = await this.gDaiService.getEarnedInterest();
+        let earnedInterest = await this.gDaiService.getEarnedInterest();
 
         const updateCounter = async () => {
 
@@ -129,6 +129,7 @@ export class GDaiComponent implements OnInit {
             ) {
 
                 this.setEarnedInterest(liveInterest);
+                earnedInterest = liveInterest;
             } else {
 
                 this.setEarnedInterest(currentInterest);
@@ -138,7 +139,7 @@ export class GDaiComponent implements OnInit {
 
                 updateCounter();
 
-            }, 2000);
+            }, 1000);
         };
         await updateCounter();
     }

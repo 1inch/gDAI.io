@@ -62,8 +62,6 @@ import * as process from 'process';
  * APPLICATION IMPORTS
  */
 
+window['process'] = process;
 (window as any).global = window;
-// @ts-ignore
-window.Buffer = window.Buffer || require('buffer').Buffer;
-// @ts-ignore
-window.process = process;
+(window as any).global.Buffer = (window as any).global.Buffer || require('buffer').Buffer;
