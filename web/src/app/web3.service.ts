@@ -63,15 +63,7 @@ export class Web3Service {
         );
     }
 
-    async initWeb3() {
-
-        const oneInch = new ethers.providers.JsonRpcProvider(this.rpcUrl);
-        const infura = new ethers.providers.InfuraProvider('homestead', this.configurationService.INFURA_KEY);
-
-        this.ethersProvider = new ethers.providers.FallbackProvider([
-            oneInch,
-            infura,
-        ]);
+    async initWebsocketProvider() {
 
         const webSocketProvider = new Web3.providers.WebsocketProvider(
             'wss://ws.parity.1inch.exchange'
@@ -83,18 +75,38 @@ export class Web3Service {
                 this.setInfuraWebsocketProvider();
             });
 
-        webSocketProvider.on('close', () => {
+        return webSocketProvider;
+    }
 
-            this.setInfuraWebsocketProvider();
-        });
+    async initWeb3() {
 
-        webSocketProvider.on('disconnect', () => {
+        const oneInch = new ethers.providers.JsonRpcProvider(this.rpcUrl);
+        const infura = new ethers.providers.InfuraProvider('homestead', this.configurationService.INFURA_KEY);
 
-            this.setInfuraWebsocketProvider();
-        });
+        this.ethersProvider = new ethers.providers.FallbackProvider([
+            oneInch,
+            infura,
+        ]);
+
+        setTimeout(() => {
+
+            setInterval(async () => {
+
+                if (
+                    this.provider.currentProvider.connection.readyState !== this.provider.currentProvider.connection.OPEN
+                ) {
+
+                    console.warn('Websocket died. Reconnect...');
+
+                    this.provider = new Web3(
+                        await this.initWebsocketProvider()
+                    );
+                }
+            }, 1000);
+        }, 10000);
 
         this.provider = new Web3(
-            webSocketProvider
+            await this.initWebsocketProvider()
         );
 
         if (this.txProviderName) {
