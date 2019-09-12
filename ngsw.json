@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1568315605704,
+  "timestamp": 1568319358574,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -8,14 +8,14 @@
       "installMode": "prefetch",
       "updateMode": "prefetch",
       "urls": [
-        "/0.6709b51693fedca24d03.js",
+        "/0.deca4be1119499fbf55d.js",
         "/favicon.ico",
         "/index.html",
-        "/main.f352a93af1353e5acb23.js",
+        "/main.fab41c4816d188d0ec06.js",
         "/manifest.webmanifest",
         "/polyfills-es5.cef33e094ffbfc75ac3a.js",
         "/polyfills.911ce91b9bf10f3f97fc.js",
-        "/runtime.17b3a52efa393bc7a52d.js",
+        "/runtime.1b9d429558206cda61f7.js",
         "/styles.8c8a851d04d3d8754504.css",
         "/vendor.e650c57be893d5e28a2d.js"
       ],
@@ -71,7 +71,7 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/0.6709b51693fedca24d03.js": "1e5d7f8291921358458eceb21c1d0845dd3da2a4",
+    "/0.deca4be1119499fbf55d.js": "321b8bd530a100622081db3a89bacb5ce5507061",
     "/assets/bitski.png": "dd2f392552aebcd2d25b91c0d18d067b149baa25",
     "/assets/cryptomaniacs.png": "550cf4c6ce74f53a3d5f975f3a0b033bda6de8f8",
     "/assets/ethereum.png": "18cde2f547f56bb9609823892395f971e02896be",
@@ -112,12 +112,12 @@
     "/assets/trust-wallet.png": "7fcf5ba66868259c8ddb9526ff15999f62ec25c2",
     "/assets/wallet-connect.png": "405a77eb97c6d08b2f1a6a793e128a607ea2e881",
     "/favicon.ico": "0cc0fcbd7a81221ec751bc45af243251cdf3bd3d",
-    "/index.html": "1a36efbf7384a78e816c722726b0a69c438a55cc",
-    "/main.f352a93af1353e5acb23.js": "5d4e1bf3dc4a99769748c5ea2ac93e8fb898fdef",
+    "/index.html": "bb186379abe7e2acada57f8cd5dad68453b57841",
+    "/main.fab41c4816d188d0ec06.js": "59669cd94551091177aa4c2bfbbc39732602f8c0",
     "/manifest.webmanifest": "c92d7dc3616fe94626656601a4c1cf0a5e9fc359",
     "/polyfills-es5.cef33e094ffbfc75ac3a.js": "4e49fca596f013716e77e195b97dd2609a6ace32",
     "/polyfills.911ce91b9bf10f3f97fc.js": "93c327b0189f9927788ea0f714dd86f9b27fb5d9",
-    "/runtime.17b3a52efa393bc7a52d.js": "8eb723ccdcbe3b6bbb7ac800a29af19df6e15152",
+    "/runtime.1b9d429558206cda61f7.js": "0238bf1d20b92574da1396f7279f47313f831940",
     "/styles.8c8a851d04d3d8754504.css": "df769709aaee7e27d2ba70d1918dee1711f013f2",
     "/vendor.e650c57be893d5e28a2d.js": "9395be0dd628291647860ddd8c16756d2dae40ba"
   },

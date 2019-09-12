@@ -11589,7 +11589,9 @@ var GDaiComponent = /** @class */ /*@__PURE__*/ (function () {
     GDaiComponent.prototype.setFullBalance = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                this.walletFullBalance = this.tokenService.toFixed(this.tokenService.formatAsset(this.fromToken, this.walletBalanceBN.add(this.earnedInterestBN)), 18);
+                this.walletFullBalance = this.tokenService.toFixed(this.tokenService.formatAsset(this.fromToken, this.walletBalanceBN
+                // this.walletBalanceBN.add(this.earnedInterestBN)
+                ), 18);
                 return [2 /*return*/];
             });
         });

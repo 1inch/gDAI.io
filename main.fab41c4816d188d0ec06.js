@@ -3855,12 +3855,26 @@ var Web3Service = /** @class */ /*@__PURE__*/ (function () {
             });
         });
     };
-    Web3Service.prototype.initWeb3 = function () {
+    Web3Service.prototype.initWebsocketProvider = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var oneInch, infura, webSocketProvider, e_1;
+            var webSocketProvider;
             var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
+                webSocketProvider = new web3__WEBPACK_IMPORTED_MODULE_11___default.a.providers.WebsocketProvider('wss://ws.parity.1inch.exchange');
+                webSocketProvider
+                    .on('error', function () {
+                    _this.setInfuraWebsocketProvider();
+                });
+                return [2 /*return*/, webSocketProvider];
+            });
+        });
+    };
+    Web3Service.prototype.initWeb3 = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var oneInch, infura, _a, _b, e_1;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_c) {
+                switch (_c.label) {
                     case 0:
                         oneInch = new ethers__WEBPACK_IMPORTED_MODULE_14__["ethers"].providers.JsonRpcProvider(this.rpcUrl);
                         infura = new ethers__WEBPACK_IMPORTED_MODULE_14__["ethers"].providers.InfuraProvider('homestead', this.configurationService.INFURA_KEY);
@@ -3868,32 +3882,47 @@ var Web3Service = /** @class */ /*@__PURE__*/ (function () {
                             oneInch,
                             infura,
                         ]);
-                        webSocketProvider = new web3__WEBPACK_IMPORTED_MODULE_11___default.a.providers.WebsocketProvider('wss://ws.parity.1inch.exchange');
-                        webSocketProvider
-                            .on('error', function () {
-                            _this.setInfuraWebsocketProvider();
-                        });
-                        webSocketProvider.on('close', function () {
-                            _this.setInfuraWebsocketProvider();
-                        });
-                        webSocketProvider.on('disconnect', function () {
-                            _this.setInfuraWebsocketProvider();
-                        });
-                        this.provider = new web3__WEBPACK_IMPORTED_MODULE_11___default.a(webSocketProvider);
-                        if (!this.txProviderName)
-                            return [3 /*break*/, 4];
-                        _a.label = 1;
+                        setTimeout(function () {
+                            setInterval(function () {
+                                return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](_this, void 0, void 0, function () {
+                                    var _a, _b;
+                                    return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_c) {
+                                        switch (_c.label) {
+                                            case 0:
+                                                if (!(this.provider.currentProvider.connection.readyState !== this.provider.currentProvider.connection.OPEN))
+                                                    return [3 /*break*/, 2];
+                                                console.warn('Websocket died. Reconnect...');
+                                                _a = this;
+                                                _b = web3__WEBPACK_IMPORTED_MODULE_11___default.a.bind;
+                                                return [4 /*yield*/, this.initWebsocketProvider()];
+                                            case 1:
+                                                _a.provider = new (_b.apply(web3__WEBPACK_IMPORTED_MODULE_11___default.a, [void 0, _c.sent()]))();
+                                                _c.label = 2;
+                                            case 2: return [2 /*return*/];
+                                        }
+                                    });
+                                });
+                            }, 1000);
+                        }, 10000);
+                        _a = this;
+                        _b = web3__WEBPACK_IMPORTED_MODULE_11___default.a.bind;
+                        return [4 /*yield*/, this.initWebsocketProvider()];
                     case 1:
-                        _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, this.connect(this.txProviderName)];
+                        _a.provider = new (_b.apply(web3__WEBPACK_IMPORTED_MODULE_11___default.a, [void 0, _c.sent()]))();
+                        if (!this.txProviderName)
+                            return [3 /*break*/, 5];
+                        _c.label = 2;
                     case 2:
-                        _a.sent();
-                        return [3 /*break*/, 4];
+                        _c.trys.push([2, 4, , 5]);
+                        return [4 /*yield*/, this.connect(this.txProviderName)];
                     case 3:
-                        e_1 = _a.sent();
+                        _c.sent();
+                        return [3 /*break*/, 5];
+                    case 4:
+                        e_1 = _c.sent();
                         console.error(e_1);
-                        return [3 /*break*/, 4];
-                    case 4: return [2 /*return*/];
+                        return [3 /*break*/, 5];
+                    case 5: return [2 /*return*/];
                 }
             });
         });
