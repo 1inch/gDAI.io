@@ -3847,6 +3847,14 @@ var Web3Service = /** @class */ /*@__PURE__*/ (function () {
         this.txProviderName = localStorage.getItem('txProviderName');
         this.initWeb3();
     }
+    Web3Service.prototype.setInfuraWebsocketProvider = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                this.provider = new web3__WEBPACK_IMPORTED_MODULE_11___default.a(new web3__WEBPACK_IMPORTED_MODULE_11___default.a.providers.WebsocketProvider('wss://mainnet.infura.io/ws/v3/' + this.configurationService.INFURA_KEY));
+                return [2 /*return*/];
+            });
+        });
+    };
     Web3Service.prototype.initWeb3 = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var oneInch, infura, webSocketProvider, e_1;
@@ -3861,8 +3869,15 @@ var Web3Service = /** @class */ /*@__PURE__*/ (function () {
                             infura,
                         ]);
                         webSocketProvider = new web3__WEBPACK_IMPORTED_MODULE_11___default.a.providers.WebsocketProvider('wss://ws.parity.1inch.exchange');
-                        webSocketProvider.on('error', function () {
-                            _this.provider = new web3__WEBPACK_IMPORTED_MODULE_11___default.a(new web3__WEBPACK_IMPORTED_MODULE_11___default.a.providers.WebsocketProvider('wss://mainnet.infura.io/ws/v3/' + _this.configurationService.INFURA_KEY));
+                        webSocketProvider
+                            .on('error', function () {
+                            _this.setInfuraWebsocketProvider();
+                        });
+                        webSocketProvider.on('close', function () {
+                            _this.setInfuraWebsocketProvider();
+                        });
+                        webSocketProvider.on('disconnect', function () {
+                            _this.setInfuraWebsocketProvider();
                         });
                         this.provider = new web3__WEBPACK_IMPORTED_MODULE_11___default.a(webSocketProvider);
                         if (!this.txProviderName)
