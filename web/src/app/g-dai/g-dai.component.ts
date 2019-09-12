@@ -205,7 +205,8 @@ export class GDaiComponent implements OnInit {
         this.walletFullBalance = this.tokenService.toFixed(
             this.tokenService.formatAsset(
                 this.fromToken,
-                this.walletBalanceBN.add(this.earnedInterestBN)
+                this.walletBalanceBN
+                // this.walletBalanceBN.add(this.earnedInterestBN)
             ),
             18
         );
