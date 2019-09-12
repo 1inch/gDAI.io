@@ -54,6 +54,15 @@ export class Web3Service {
         this.initWeb3();
     }
 
+    async setInfuraWebsocketProvider() {
+
+        this.provider = new Web3(
+            new Web3.providers.WebsocketProvider(
+                'wss://mainnet.infura.io/ws/v3/' + this.configurationService.INFURA_KEY
+            )
+        );
+    }
+
     async initWeb3() {
 
         const oneInch = new ethers.providers.JsonRpcProvider(this.rpcUrl);
@@ -68,13 +77,20 @@ export class Web3Service {
             'wss://ws.parity.1inch.exchange'
         );
 
-        webSocketProvider.on('error', () => {
+        webSocketProvider
+            .on('error', () => {
 
-            this.provider = new Web3(
-                new Web3.providers.WebsocketProvider(
-                    'wss://mainnet.infura.io/ws/v3/' + this.configurationService.INFURA_KEY
-                )
-            );
+                this.setInfuraWebsocketProvider();
+            });
+
+        webSocketProvider.on('close', () => {
+
+            this.setInfuraWebsocketProvider();
+        });
+
+        webSocketProvider.on('disconnect', () => {
+
+            this.setInfuraWebsocketProvider();
         });
 
         this.provider = new Web3(
